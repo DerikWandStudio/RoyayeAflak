@@ -1,0 +1,655 @@
+/* =========================================
+   REGISTER HERO
+========================================= */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.register-hero {
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 15% 50%,
+            rgba(182, 255, 84, 0.08),
+            transparent 32%),
+        linear-gradient(90deg,
+            rgba(7, 17, 13, 0.35),
+            #07110d 85%),
+        url("../images/teams/teams-hero.webp") center / cover;
+}
+
+.register-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top,
+            #07110d,
+            transparent 35%);
+    pointer-events: none;
+}
+
+.register-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    padding-top: 70px;
+}
+
+.register-eyebrow {
+    display: inline-block;
+    color: #b6ff54;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.register-hero h1 {
+    margin: 20px 0;
+    color: #fff;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.register-hero h1 span {
+    display: block;
+    margin-top: 14px;
+    color: #b6ff54;
+    font-size: 0.43em;
+}
+
+.register-hero p {
+    max-width: 650px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 1.05rem;
+    line-height: 2;
+}
+
+
+/* =========================================
+   REGISTER SECTION
+========================================= */
+
+.register-section {
+    padding: 110px 0;
+    background: #07110d;
+}
+
+.register-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.8fr);
+    gap: 28px;
+    align-items: start;
+}
+
+
+/* =========================================
+   FORM BOX
+========================================= */
+
+.register-form-box {
+    padding: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 26px;
+    background:
+        linear-gradient(145deg,
+            rgba(16, 30, 22, 0.96),
+            rgba(10, 21, 16, 0.96));
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+}
+
+.register-form-box .section-heading {
+    margin-bottom: 42px;
+    display: block;
+}
+
+.register-form-box .section-heading h2 {
+    margin: 12px 0;
+}
+
+
+/* =========================================
+   FORM SECTION TITLES
+========================================= */
+
+.form-section-title {
+    position: relative;
+    margin: 35px 0 22px;
+    padding-right: 16px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.form-section-title:first-of-type {
+    margin-top: 0;
+}
+
+.form-section-title::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 4px;
+    height: 22px;
+    border-radius: 10px;
+    background: #b6ff54;
+    transform: translateY(-50%);
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.form-group label span {
+    color: rgba(255, 255, 255, 0.32);
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    outline: none;
+    padding: 14px 16px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.025);
+    font-family: inherit;
+    font-size: 0.88rem;
+    transition: 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.form-group select option {
+    color: #fff;
+    background: #101e16;
+}
+
+.form-group textarea {
+    min-height: 145px;
+    resize: vertical;
+    line-height: 1.9;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(182, 255, 84, 0.5);
+    background: rgba(182, 255, 84, 0.025);
+    box-shadow: 0 0 0 4px rgba(182, 255, 84, 0.05);
+}
+
+
+/* =========================================
+   CHARACTER COUNTER
+========================================= */
+
+.character-counter {
+    margin-top: 7px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.72rem;
+}
+
+
+/* =========================================
+   AGREEMENT
+========================================= */
+
+.form-agreement {
+    margin-top: 25px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.8rem;
+    line-height: 1.8;
+}
+
+.checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.custom-checkbox {
+    flex: 0 0 19px;
+    width: 19px;
+    height: 19px;
+    margin-top: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: 0.25s ease;
+}
+
+.checkbox-wrapper input:checked+.custom-checkbox {
+    border-color: #b6ff54;
+    background: #b6ff54;
+    box-shadow: inset 0 0 0 4px #101e16;
+}
+
+.checkbox-wrapper input:focus-visible+.custom-checkbox {
+    outline: 2px solid rgba(182, 255, 84, 0.45);
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.register-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 28px;
+    padding: 15px 22px;
+    border: 0;
+    border-radius: 12px;
+    color: #07110d;
+    background: #b6ff54;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.register-submit:hover {
+    background: #c8ff7b;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(182, 255, 84, 0.16);
+}
+
+.register-submit:active {
+    transform: translateY(0);
+}
+
+.register-submit span:last-child {
+    font-size: 1.1rem;
+}
+
+
+/* =========================================
+   FORM MESSAGE
+========================================= */
+
+.form-message {
+    display: none;
+    margin-top: 18px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    line-height: 1.8;
+}
+
+.form-message.error {
+    display: block;
+    border: 1px solid rgba(255, 100, 100, 0.15);
+    color: #ffb0b0;
+    background: rgba(255, 80, 80, 0.06);
+}
+
+.form-message.success {
+    display: block;
+    border: 1px solid rgba(182, 255, 84, 0.18);
+    color: #d6ffab;
+    background: rgba(182, 255, 84, 0.06);
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.register-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 100px;
+}
+
+
+/* =========================================
+   INFO CARD
+========================================= */
+
+.register-info-card {
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 22px;
+    background: #0a1510;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(182, 255, 84, 0.16);
+    border-radius: 14px;
+    background: rgba(182, 255, 84, 0.06);
+    font-size: 22px;
+}
+
+.register-info-card h3 {
+    margin-bottom: 28px;
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   PROCESS
+========================================= */
+
+.process-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.process-item {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    padding-bottom: 25px;
+}
+
+.process-item:last-child {
+    padding-bottom: 0;
+}
+
+.process-item>span {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #07110d;
+    background: #b6ff54;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+.process-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 35px;
+    right: 16px;
+    width: 1px;
+    height: calc(100% - 24px);
+    background: rgba(182, 255, 84, 0.15);
+}
+
+.process-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 0.86rem;
+}
+
+.process-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 0.76rem;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   CONTACT CARD
+========================================= */
+
+.register-contact-card {
+    padding: 28px;
+    border: 1px solid rgba(182, 255, 84, 0.13);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at top right,
+            rgba(182, 255, 84, 0.08),
+            transparent 55%),
+        #0a1510;
+}
+
+.register-contact-card>span {
+    color: #b6ff54;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.register-contact-card h3 {
+    margin: 13px 0 8px;
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.register-contact-card p {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 0.8rem;
+    line-height: 1.9;
+}
+
+.register-contact-card a {
+    color: #b6ff54;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+
+/* =========================================
+   BOTTOM CTA
+========================================= */
+
+.register-bottom-cta {
+    padding: 100px 0;
+    background: #0a1510;
+}
+
+.register-bottom-box {
+    padding: 75px 35px;
+    text-align: center;
+    border: 1px solid rgba(182, 255, 84, 0.14);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at center,
+            rgba(182, 255, 84, 0.09),
+            transparent 55%),
+        #07110d;
+}
+
+.register-bottom-box h2 {
+    margin: 15px 0;
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    font-weight: 900;
+}
+
+.register-bottom-box p {
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 2;
+}
+
+.register-bottom-box .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* =========================================
+   JALALI BIRTH DATE
+========================================= */
+
+.birth-date-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.birth-date-fields {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 8px;
+}
+
+.birth-date-fields select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+
+    .birth-date-fields {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .birth-date-fields select {
+        width: 100%;
+        min-width: 0;
+        padding: 12px 6px;
+        font-size: 0.78rem;
+    }
+
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .register-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .register-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .register-hero {
+        min-height: 500px;
+    }
+
+    .register-section,
+    .register-bottom-cta {
+        padding: 80px 0;
+    }
+
+    .register-form-box {
+        padding: 28px 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .register-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .register-bottom-box {
+        padding: 60px 25px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .register-form-box {
+        padding: 24px 17px;
+        border-radius: 20px;
+    }
+
+    .register-info-card,
+    .register-contact-card {
+        padding: 23px;
+    }
+
+    .register-hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .register-hero h1 span {
+        font-size: 0.48em;
+    }
+
+    .checkbox-wrapper {
+        font-size: 0.76rem;
+    }
+
+}
+
+.register-form-box,
+.form-group,
+.form-grid {
+    min-width: 0;
+}

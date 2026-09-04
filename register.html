@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ثبت‌نام | رویای افلاک</title>
+
+    <meta name="description" content="فرم ثبت‌نام مدرسه فوتبال رویای افلاک؛ قدم اول برای شروع مسیر فوتبالی شما.">
+
+    <meta name="author" content="رویای افلاک">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#07110d">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ثبت‌نام | رویای افلاک">
+    <meta property="og:description" content="برای ثبت‌نام در مدرسه فوتبال رویای افلاک فرم را تکمیل کنید.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fa_IR">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="images/logo.webp">
+
+    <!-- Bootstrap RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- Register CSS -->
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="site-header">
+
+        <div class="container">
+
+            <nav class="main-nav">
+
+                <a href="index.html" class="brand">
+
+                    <span class="brand-icon" aria-hidden="true">
+                        ⚽
+                    </span>
+
+                    <span class="brand-text">
+                        رویای افلاک
+                    </span>
+
+                </a>
+
+                <div class="nav-wrapper">
+
+                    <ul class="nav-links">
+
+                        <li>
+                            <a href="index.html">
+                                خانه
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">
+                                درباره ما
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="teams.html">
+                                رده‌های سنی
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="coaches.html">
+                                مربیان
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="gallery.html">
+                                گالری
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="contact.html">
+                                تماس با ما
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <a href="register.html" class="nav-register" aria-current="page">
+                        ثبت‌نام
+                        <span aria-hidden="true">←</span>
+                    </a>
+
+                </div>
+
+                <button class="menu-toggle" id="menuBtn" type="button" aria-label="باز کردن منو" aria-expanded="false"
+                    aria-controls="mainMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </nav>
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mainMenu">
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        خانه
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        درباره ما
+                    </a>
+                </li>
+
+                <li>
+                    <a href="teams.html">
+                        رده‌های سنی
+                    </a>
+                </li>
+
+                <li>
+                    <a href="coaches.html">
+                        مربیان
+                    </a>
+                </li>
+
+                <li>
+                    <a href="gallery.html">
+                        گالری
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        تماس با ما
+                    </a>
+                </li>
+
+                <li>
+                    <a href="register.html" class="mobile-register" aria-current="page">
+                        ثبت‌نام
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+        <section class="register-hero">
+
+            <div class="container">
+
+                <div class="register-hero-content">
+
+                    <span class="register-eyebrow">
+                        به رویای افلاک بپیوندید
+                    </span>
+
+                    <h1>
+                        مسیر فوتبالی تو
+                        <span>از همین‌جا شروع می‌شود.</span>
+                    </h1>
+
+                    <p>
+                        اطلاعات اولیه بازیکن را وارد کنید تا تیم رویای افلاک
+                        درخواست شما را بررسی کند.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             REGISTER SECTION
+        ========================== -->
+        <section class="register-section">
+
+            <div class="container">
+
+                <div class="register-layout">
+
+                    <!-- Form -->
+                    <div class="register-form-box">
+
+                        <div class="section-heading">
+
+                            <span class="section-tag">
+                                ثبت نام
+                            </span>
+
+                            <h2>
+                                فرم ثبت‌نام
+                            </h2>
+
+                            <p>
+                                لطفاً اطلاعات را با دقت وارد کنید.
+                            </p>
+
+                        </div>
+
+                        <form id="registerForm" novalidate>
+
+                            <!-- Personal -->
+                            <div class="form-section-title">
+                                اطلاعات بازیکن
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label for="fullName">
+                                        نام و نام خانوادگی
+                                    </label>
+
+                                    <input type="text" id="fullName" name="fullName" placeholder="مثلاً علی احمدی"
+                                        autocomplete="name" required>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="fatherName">
+                                        نام پدر
+                                    </label>
+
+                                    <input type="text" id="fatherName" name="fatherName" placeholder="مثلاً محمد"
+                                        required>
+
+                                </div>
+
+                                <div class="form-group birth-date-group">
+
+                                    <label for="birthDate">
+                                        تاریخ تولد
+                                    </label>
+
+                                    <input type="text" id="birthDate" name="birthDate" inputmode="numeric"
+                                        autocomplete="bday" maxlength="10" placeholder="1392/05/18" required dir="ltr">
+
+                                    <small class="input-hint">
+                                        مثال: 1392/05/18
+                                    </small>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="ageGroup">
+                                        رده سنی
+                                    </label>
+
+                                    <select id="ageGroup" name="ageGroup" required>
+
+                                        <option value="">
+                                            انتخاب رده سنی
+                                        </option>
+
+                                        <option value="u12">
+                                            نونهالان
+                                        </option>
+
+                                        <option value="u15">
+                                            نوجوانان
+                                        </option>
+
+                                        <option value="u18">
+                                            جوانان
+                                        </option>
+
+                                        <option value="senior">
+                                            بزرگسالان
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Football -->
+                            <div class="form-section-title">
+                                اطلاعات فوتبالی
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label for="position">
+                                        پست مورد علاقه
+                                    </label>
+
+                                    <select id="position" name="position" required>
+
+                                        <option value="">
+                                            انتخاب پست
+                                        </option>
+
+                                        <option value="goalkeeper">
+                                            دروازه‌بان
+                                        </option>
+
+                                        <option value="defender">
+                                            مدافع
+                                        </option>
+
+                                        <option value="midfielder">
+                                            هافبک
+                                        </option>
+
+                                        <option value="forward">
+                                            مهاجم
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="experience">
+                                        سطح و سابقه
+                                    </label>
+
+                                    <select id="experience" name="experience" required>
+
+                                        <option value="">
+                                            انتخاب وضعیت
+                                        </option>
+
+                                        <option value="beginner">
+                                            مبتدی
+                                        </option>
+
+                                        <option value="amateur">
+                                            آماتور
+                                        </option>
+
+                                        <option value="experienced">
+                                            باتجربه
+                                        </option>
+
+                                        <option value="academy">
+                                            سابقه مدرسه فوتبال
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Contact -->
+                            <div class="form-section-title">
+                                اطلاعات تماس
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label for="parentPhone">
+                                        شماره تماس والدین
+                                    </label>
+
+                                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="09xxxxxxxxx"
+                                        inputmode="tel" autocomplete="tel" required>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="playerPhone">
+                                        شماره تماس بازیکن
+                                        <span>(اختیاری)</span>
+                                    </label>
+
+                                    <input type="tel" id="playerPhone" name="playerPhone" placeholder="09xxxxxxxxx"
+                                        inputmode="tel">
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Description -->
+                            <div class="form-section-title">
+                                توضیحات
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="message">
+                                    سابقه یا توضیحات تکمیلی
+                                    <span>(اختیاری)</span>
+                                </label>
+
+                                <textarea id="message" name="message" rows="5" maxlength="500"
+                                    placeholder="در صورت تمایل درباره سابقه ورزشی، افتخارات یا شرایط خاص بازیکن بنویسید..."></textarea>
+
+                                <div class="character-counter">
+                                    <span id="charCount">0</span> / 500
+                                </div>
+
+                            </div>
+
+
+                            <!-- Agreement -->
+                            <div class="form-agreement">
+
+                                <label class="checkbox-wrapper">
+
+                                    <input type="checkbox" id="agreement" name="agreement" required>
+
+                                    <span class="custom-checkbox"></span>
+
+                                    <span>
+                                        با ثبت این فرم، صحت اطلاعات واردشده را
+                                        تأیید می‌کنم.
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+                            <!-- Submit -->
+                            <button type="submit" class="register-submit">
+                                <span>
+                                    ارسال درخواست ثبت‌نام
+                                </span>
+
+                                <span aria-hidden="true">
+                                    ←
+                                </span>
+
+                            </button>
+
+                            <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- Side Info -->
+                    <aside class="register-sidebar">
+
+                        <div class="register-info-card">
+
+                            <span class="info-icon">
+                                ⚽
+                            </span>
+
+                            <h3>
+                                روند ثبت‌نام
+                            </h3>
+
+                            <div class="process-list">
+
+                                <div class="process-item">
+
+                                    <span>
+                                        01
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            تکمیل فرم
+                                        </strong>
+
+                                        <p>
+                                            اطلاعات بازیکن را وارد کنید.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <div class="process-item">
+
+                                    <span>
+                                        02
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            بررسی درخواست
+                                        </strong>
+
+                                        <p>
+                                            درخواست شما توسط مجموعه بررسی می‌شود.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <div class="process-item">
+
+                                    <span>
+                                        03
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            تماس با خانواده
+                                        </strong>
+
+                                        <p>
+                                            برای هماهنگی با شما تماس گرفته می‌شود.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <div class="process-item">
+
+                                    <span>
+                                        04
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            شروع مسیر
+                                        </strong>
+
+                                        <p>
+                                            زمان تست یا شروع تمرین مشخص می‌شود.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="register-contact-card">
+
+                            <span>
+                                ارتباط با ما
+                            </span>
+
+                            <h3>
+                                سؤالی داری؟
+                            </h3>
+
+                            <p>
+                                برای دریافت اطلاعات بیشتر با ما در ارتباط باشید.
+                            </p>
+
+                            <a href="tel:+9809120329713">
+                                09120329713
+                            </a>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+        <section class="register-bottom-cta">
+
+            <div class="container">
+
+                <div class="register-bottom-box">
+
+                    <span class="section-tag">
+                        آینده شما از اینجا شروع میشود
+                    </span>
+
+                    <h2>
+                        آماده‌ای وارد زمین شوی؟
+                    </h2>
+
+                    <p>
+                        هر مسیر بزرگی از یک قدم کوچک شروع می‌شود.
+                    </p>
+
+                    <a href="teams.html" class="btn-primary">
+                        آشنایی با تیم‌ها
+                        <span aria-hidden="true">←</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="site-footer" id="contact">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <!-- About -->
+                <div class="footer-brand">
+
+                    <a href="index.html" class="brand">
+
+                        <span class="brand-icon" aria-hidden="true">
+                            ⚽
+                        </span>
+
+                        <span class="brand-text">
+                            رویای افلاک
+                        </span>
+
+                    </a>
+
+                    <p>
+                        ساختن بازیکنانی بهتر،
+                        برای ساختن آینده‌ای بهتر.
+                    </p>
+
+                </div>
+
+
+                <!-- Links -->
+                <div class="footer-column">
+
+                    <h3>
+                        دسترسی سریع
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <a href="index.html">
+                                خانه
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">
+                                درباره ما
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="teams.html">
+                                رده‌های سنی
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="coaches.html">
+                                مربیان
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="gallery.html">
+                                گالری
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Contact -->
+                <div class="footer-column">
+
+                    <h3>
+                        ارتباط با ما
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <a href="tel:+989120329713">
+                                09120329713
+                            </a>
+                        </li>
+
+                        <li>
+                            <span>
+                                لرستان - خرم آباد - گلدشت غربی -اکباتان 5 جنب پارک جانبازان
+                            </span>
+                        </li>
+
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">
+                                Instagram
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 رویای افلاک — تمامی حقوق محفوظ است.
+                </p>
+
+                <p>
+                    Designed &amp; Developed by
+                    <strong>
+                        <a href="https://khoshnamay.ir/profiles/parham/">
+                            ParhamDerikvand
+                        </a>
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JS -->
+    <script src="js/index.js"></script>
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>
