@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             menuBtn.setAttribute(
                 "aria-expanded",
-                isOpen
+                String(isOpen)
             );
 
             menuBtn.setAttribute(
@@ -52,32 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-
-        document.addEventListener("keydown", event => {
-
-            if (
-                event.key === "Escape" &&
-                mobileMenu.classList.contains("active")
-            ) {
-
-                mobileMenu.classList.remove("active");
-
-                menuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuBtn.setAttribute(
-                    "aria-label",
-                    "باز کردن منو"
-                );
-
-                menuBtn.focus();
-
-            }
-
-        });
-
     }
 
 
@@ -93,13 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const updateHeader = () => {
 
             if (window.scrollY > 30) {
-
                 header.classList.add("scrolled");
-
             } else {
-
                 header.classList.remove("scrolled");
-
             }
 
         };
@@ -116,18 +86,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GALLERY FILTER
+       GALLERY
     ===================================================== */
 
-    const filterButtons =
-        document.querySelectorAll(".gallery-filter");
-
-    const galleryCards =
-        document.querySelectorAll(".gallery-card");
+    const galleryGrid =
+        document.getElementById("galleryGrid");
 
     const galleryEmpty =
         document.getElementById("galleryEmpty");
 
+    const filterButtons =
+        document.querySelectorAll(".gallery-filter");
+
+
+    const getCards = () =>
+        galleryGrid
+            ? galleryGrid.querySelectorAll(".gallery-card")
+            : [];
+
+
+    /* =====================================================
+       EMPTY STATE
+    ===================================================== */
+
+    const updateEmptyState = () => {
+
+        const cards = getCards();
+
+        let visibleCards = 0;
+
+        cards.forEach(card => {
+
+            if (!card.classList.contains("hidden")) {
+                visibleCards++;
+            }
+
+        });
+
+        if (galleryEmpty) {
+
+            if (visibleCards === 0) {
+                galleryEmpty.classList.add("active");
+            } else {
+                galleryEmpty.classList.remove("active");
+            }
+
+        }
+
+    };
+
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
 
     filterButtons.forEach(button => {
 
@@ -137,60 +148,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.dataset.filter;
 
 
-            /* Active Button */
+            /* Active button */
 
             filterButtons.forEach(btn => {
-
                 btn.classList.remove("active");
-
             });
 
             button.classList.add("active");
 
 
-            /* Filter Cards */
+            /* Filter cards */
 
-            let visibleCards = 0;
+            const cards = getCards();
 
-            galleryCards.forEach(card => {
+            cards.forEach(card => {
 
                 const category =
                     card.dataset.category;
 
-
-                if (
+                const shouldShow =
                     filter === "all" ||
-                    category === filter
-                ) {
+                    category === filter;
 
-                    card.classList.remove("hidden");
-
-                    visibleCards++;
-
-                } else {
-
-                    card.classList.add("hidden");
-
-                }
+                card.classList.toggle(
+                    "hidden",
+                    !shouldShow
+                );
 
             });
 
 
-            /* Empty State */
-
-            if (galleryEmpty) {
-
-                if (visibleCards === 0) {
-
-                    galleryEmpty.classList.add("active");
-
-                } else {
-
-                    galleryEmpty.classList.remove("active");
-
-                }
-
-            }
+            updateEmptyState();
 
         });
 
@@ -226,98 +214,123 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".lightbox-backdrop");
 
 
-    const galleryImages =
-        document.querySelectorAll(".gallery-image");
-
-
-    /* Category names */
-
     const categoryNames = {
 
         training: "تمرینات",
-
         matches: "مسابقات",
-
         teams: "تیم‌ها",
-
         events: "رویدادها"
 
     };
 
 
-    /* Open */
+    /* =====================================================
+       OPEN LIGHTBOX
+    ===================================================== */
 
-    galleryImages.forEach(imageButton => {
+    const openLightbox = (button) => {
 
-        imageButton.addEventListener("click", () => {
-
-            const image =
-                imageButton.dataset.image;
-
-            const title =
-                imageButton.dataset.title;
-
-            const description =
-                imageButton.dataset.description;
-
-            const date =
-                imageButton.dataset.date;
+        if (
+            !lightbox ||
+            !lightboxImage
+        ) {
+            return;
+        }
 
 
-            const card =
-                imageButton.closest(".gallery-card");
+        const image =
+            button.dataset.image || "";
 
-            const category =
-                card?.dataset.category || "";
+        const title =
+            button.dataset.title || "";
+
+        const description =
+            button.dataset.description || "";
+
+        const date =
+            button.dataset.date || "";
 
 
-            lightboxImage.src = image;
+        const card =
+            button.closest(".gallery-card");
 
-            lightboxImage.alt = title;
+        const category =
+            card?.dataset.category || "";
 
-            lightboxTitle.textContent =
-                title;
 
+        lightboxImage.src = image;
+        lightboxImage.alt = title;
+
+        if (lightboxTitle) {
+            lightboxTitle.textContent = title;
+        }
+
+        if (lightboxDescription) {
             lightboxDescription.textContent =
                 description;
+        }
 
-            lightboxDate.textContent =
-                date;
+        if (lightboxDate) {
+            lightboxDate.textContent = date;
+        }
 
+        if (lightboxCategory) {
             lightboxCategory.textContent =
                 categoryNames[category] || "گالری";
+        }
 
 
-            lightbox.classList.add("active");
+        lightbox.classList.add("active");
 
-            lightbox.setAttribute(
-                "aria-hidden",
-                "false"
+        lightbox.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.classList.add(
+            "lightbox-open"
+        );
+
+        if (lightboxClose) {
+            lightboxClose.focus();
+        }
+
+    };
+
+
+    /* =====================================================
+       GALLERY IMAGE EVENTS
+    ===================================================== */
+
+    const setupLightboxButtons = () => {
+
+        const galleryImages =
+            document.querySelectorAll(".gallery-image");
+
+        galleryImages.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => openLightbox(button)
             );
-
-
-            /* Prevent background scrolling */
-
-            document.body.style.overflow =
-                "hidden";
-
-
-            /* Focus close button */
-
-            if (lightboxClose) {
-
-                lightboxClose.focus();
-
-            }
 
         });
 
-    });
+    };
 
 
-    /* Close function */
+    setupLightboxButtons();
+
+
+    /* =====================================================
+       CLOSE LIGHTBOX
+    ===================================================== */
 
     const closeLightbox = () => {
+
+        if (!lightbox) {
+            return;
+        }
 
         lightbox.classList.remove("active");
 
@@ -326,16 +339,15 @@ document.addEventListener("DOMContentLoaded", () => {
             "true"
         );
 
+        document.body.classList.remove(
+            "lightbox-open"
+        );
 
-        document.body.style.overflow =
-            "";
-
-
-        /* Clear image after animation */
 
         setTimeout(() => {
 
             if (
+                lightboxImage &&
                 !lightbox.classList.contains("active")
             ) {
 
@@ -348,8 +360,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    /* Close button */
-
     if (lightboxClose) {
 
         lightboxClose.addEventListener(
@@ -359,8 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* Click outside */
 
     if (lightboxBackdrop) {
 
@@ -372,7 +380,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ESC */
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
 
     document.addEventListener(
         "keydown",
@@ -380,6 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (
                 event.key === "Escape" &&
+                lightbox &&
                 lightbox.classList.contains("active")
             ) {
 
@@ -395,17 +406,32 @@ document.addEventListener("DOMContentLoaded", () => {
        LIGHTBOX IMAGE ERROR
     ===================================================== */
 
-    lightboxImage.addEventListener(
-        "error",
-        () => {
+    if (lightboxImage) {
 
-            lightboxTitle.textContent =
-                "تصویر پیدا نشد";
+        lightboxImage.addEventListener(
+            "error",
+            () => {
 
-            lightboxDescription.textContent =
-                "مسیر تصویر را در پوشه images/gallery بررسی کنید.";
+                if (lightboxTitle) {
+                    lightboxTitle.textContent =
+                        "تصویر پیدا نشد";
+                }
 
-        }
-    );
+                if (lightboxDescription) {
+                    lightboxDescription.textContent =
+                        "مسیر تصویر را بررسی کنید.";
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIAL STATE
+    ===================================================== */
+
+    updateEmptyState();
 
 });

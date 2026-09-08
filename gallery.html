@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
@@ -13,13 +12,11 @@
         content="گالری رویای افلاک, تصاویر مدرسه فوتبال, عکس مدرسه فوتبال, رویای افلاک, فوتبال خرم آباد">
 
     <meta name="author" content="رویای افلاک">
-
     <meta name="robots" content="index, follow">
-
     <meta name="theme-color" content="#07110d">
 
     <meta property="og:title" content="گالری تصاویر | رویای افلاک">
-    <meta property="og:description" content="گالری تصاویر تمرینات، مسابقات و رویدادهای مدرسه فوتبال رویای افلاک.">
+    <meta property="og:description" content="گالری تصاویر مدرسه فوتبال رویای افلاک.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
 
@@ -39,6 +36,7 @@
 
     <!-- Gallery CSS -->
     <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -52,15 +50,8 @@
             <nav class="main-nav">
 
                 <a href="index.html" class="brand">
-
-                    <span class="brand-icon" aria-hidden="true">
-                        ⚽
-                    </span>
-
-                    <span class="brand-text">
-                        رویای افلاک
-                    </span>
-
+                    <span class="brand-icon" aria-hidden="true">⚽</span>
+                    <span class="brand-text">رویای افلاک</span>
                 </a>
 
                 <div class="nav-wrapper">
@@ -68,39 +59,27 @@
                     <ul class="nav-links">
 
                         <li>
-                            <a href="index.html">
-                                خانه
-                            </a>
+                            <a href="index.html">خانه</a>
                         </li>
 
                         <li>
-                            <a href="about.html">
-                                درباره ما
-                            </a>
+                            <a href="about.html">درباره ما</a>
                         </li>
 
                         <li>
-                            <a href="teams.html">
-                                رده‌های سنی
-                            </a>
+                            <a href="teams.html">رده‌های سنی</a>
                         </li>
 
                         <li>
-                            <a href="coaches.html">
-                                مربیان
-                            </a>
+                            <a href="coaches.html">مربیان</a>
                         </li>
 
                         <li>
-                            <a href="gallery.html" class="active">
-                                گالری
-                            </a>
+                            <a href="gallery.html" class="active">گالری</a>
                         </li>
 
                         <li>
-                            <a href="index.html#contact">
-                                تماس با ما
-                            </a>
+                            <a href="contact.html">تماس با ما</a>
                         </li>
 
                     </ul>
@@ -134,39 +113,27 @@
                 <ul>
 
                     <li>
-                        <a href="index.html">
-                            خانه
-                        </a>
+                        <a href="index.html">خانه</a>
                     </li>
 
                     <li>
-                        <a href="about.html">
-                            درباره ما
-                        </a>
+                        <a href="about.html">درباره ما</a>
                     </li>
 
                     <li>
-                        <a href="teams.html">
-                            رده‌های سنی
-                        </a>
+                        <a href="teams.html">رده‌های سنی</a>
                     </li>
 
                     <li>
-                        <a href="coaches.html">
-                            مربیان
-                        </a>
+                        <a href="coaches.html">مربیان</a>
                     </li>
 
                     <li>
-                        <a href="gallery.html">
-                            گالری
-                        </a>
+                        <a href="gallery.html">گالری</a>
                     </li>
 
                     <li>
-                        <a href="index.html#contact">
-                            تماس با ما
-                        </a>
+                        <a href="index.html#contact">تماس با ما</a>
                     </li>
 
                     <li>
@@ -184,9 +151,11 @@
     </header>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- ================= MAIN ================= -->
 
     <main>
+
+        <!-- ================= HERO ================= -->
 
         <section class="gallery-hero">
 
@@ -194,8 +163,9 @@
 
                 <div class="gallery-hero-content">
 
-                    <span class="hero-tag">
-                        ROYAYE AFLAK / GALLERY
+                    <span class="hero-badge">
+                        <span class="badge-dot"></span>
+                        گالری رویای افلاک
                     </span>
 
                     <h1>
@@ -204,8 +174,8 @@
                     </h1>
 
                     <p>
-                        نگاهی به تمرینات، مسابقات، تیم‌ها و خاطراتی
-                        که در مسیر فوتبالی رویای افلاک ساخته‌ایم.
+                        تصاویر و خاطراتی از مسیر فوتبالی
+                        رویای افلاک.
                     </p>
 
                 </div>
@@ -232,14 +202,14 @@
                     </h2>
 
                     <p>
-                        هر تصویر، بخشی از مسیر ماست؛
-                        از اولین تمرین‌ها تا لحظه‌های بزرگ مسابقه.
+                        لحظه‌های ثبت‌شده از تمرینات، مسابقات،
+                        تیم‌ها و رویدادهای آکادمی.
                     </p>
 
                 </div>
 
 
-                <!-- Filters -->
+                <!-- ================= FILTERS ================= -->
 
                 <div class="gallery-filters" role="group" aria-label="فیلتر گالری">
 
@@ -276,75 +246,45 @@
                 </div>
 
 
-                <!-- Gallery Grid -->
+                <!-- ================= GALLERY GRID ================= -->
 
-                <div class="gallery-grid">
+                <div class="gallery-grid" id="galleryGrid">
 
+                    <!--
+                    ==================================================
+                    GALLERY CARD TEMPLATE
 
-                    <!-- PHOTO 01 -->
+                    برای اضافه کردن تصویر جدید، این ساختار را کپی کن
+                    و اطلاعات واقعی خودت را داخلش قرار بده.
 
-                    <article class="gallery-card" data-category="teams">
+                    data-category:
+                    training
+                    matches
+                    teams
+                    events
 
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-01.webp"
-                            data-title="عکس سه نفره"
-                            data-description="یک قاب خاطره‌انگیز از متی، مهدی و محمدمهدی در کنار یکدیگر."
-                            data-date="۰۵ مرداد ۱۴۰۵" aria-label="مشاهده عکس سه نفره">
-
-                            <img src="images/gallery/gallery-01.webp" alt="عکس سه نفره از بازیکنان رویای افلاک"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                تیم‌ها
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                عکس سه نفره
-                            </h3>
-
-                            <p>
-                                یک قاب خاطره‌انگیز از متی، مهدی و محمدمهدی در کنار یکدیگر.
-                            </p>
-
-                            <time datetime="2026-07-27">
-                                <span>◷</span>
-                                ۰۵ مرداد ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PHOTO 02 -->
-
+                    ==================================================
+                    
                     <article class="gallery-card" data-category="training">
 
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-02.webp"
-                            data-title="تمرین عصرگاهی"
-                            data-description="بازیکنان آکادمی در جریان یکی از تمرینات گروهی و آماده‌سازی فنی."
-                            data-date="۱۸ تیر ۱۴۰۵" aria-label="مشاهده عکس تمرین عصرگاهی">
+                        <button
+                            class="gallery-image"
+                            type="button"
 
-                            <img src="images/gallery/gallery-02.webp" alt="تمرین عصرگاهی بازیکنان رویای افلاک"
+                            data-image="images/gallery/example.webp"
+                            data-title="عنوان تصویر"
+                            data-description="توضیحات تصویر"
+                            data-date="تاریخ تصویر"
+
+                            aria-label="مشاهده عنوان تصویر">
+
+                            <img
+                                src="images/gallery/example.webp"
+                                alt="توضیح مناسب برای تصویر"
                                 loading="lazy">
 
                             <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
+                                <span class="view-icon">↗</span>
                             </span>
 
                             <span class="image-category">
@@ -356,316 +296,42 @@
                         <div class="gallery-info">
 
                             <h3>
-                                تمرین عصرگاهی
+                                عنوان تصویر
                             </h3>
 
                             <p>
-                                بازیکنان آکادمی در جریان یکی از تمرینات گروهی و آماده‌سازی فنی.
+                                توضیحات تصویر
                             </p>
 
-                            <time datetime="2026-07-09">
+                            <time datetime="2026-01-01">
                                 <span>◷</span>
-                                ۱۸ تیر ۱۴۰۵
+                                تاریخ تصویر
                             </time>
 
                         </div>
 
                     </article>
 
-
-                    <!-- PHOTO 03 -->
-
-                    <article class="gallery-card" data-category="matches">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-03.webp"
-                            data-title="روز مسابقه"
-                            data-description="بازیکنان با تمرکز کامل آماده ورود به زمین و شروع مسابقه هستند."
-                            data-date="۲۲ خرداد ۱۴۰۵" aria-label="مشاهده عکس روز مسابقه">
-
-                            <img src="images/gallery/gallery-03.webp" alt="بازیکنان رویای افلاک پیش از مسابقه"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                مسابقات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                روز مسابقه
-                            </h3>
-
-                            <p>
-                                بازیکنان با تمرکز کامل آماده ورود به زمین و شروع مسابقه هستند.
-                            </p>
-
-                            <time datetime="2026-06-12">
-                                <span>◷</span>
-                                ۲۲ خرداد ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PHOTO 04 -->
-
-                    <article class="gallery-card" data-category="training">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-04.webp"
-                            data-title="یک قدم تا موفقیت"
-                            data-description="لحظه‌ای از تمرین بازیکنان جوان؛ جایی که تلاش، مسیر پیشرفت را می‌سازد."
-                            data-date="۱۰ خرداد ۱۴۰۵" aria-label="مشاهده عکس یک قدم تا موفقیت">
-
-                            <img src="images/gallery/gallery-04.webp" alt="تمرین بازیکنان جوان رویای افلاک"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                تمرینات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                یک قدم تا موفقیت
-                            </h3>
-
-                            <p>
-                                لحظه‌ای از تمرین بازیکنان جوان؛ جایی که تلاش، مسیر پیشرفت را می‌سازد.
-                            </p>
-
-                            <time datetime="2026-05-31">
-                                <span>◷</span>
-                                ۱۰ خرداد ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PHOTO 05 -->
-
-                    <article class="gallery-card" data-category="teams">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-05.webp"
-                            data-title="نسل آینده فوتبال"
-                            data-description="بازیکنان رده‌های پایه در کنار یکدیگر؛ شروع مسیری برای ساختن آینده."
-                            data-date="۲۸ اردیبهشت ۱۴۰۵" aria-label="مشاهده عکس نسل آینده فوتبال">
-
-                            <img src="images/gallery/gallery-05.webp" alt="بازیکنان رده پایه رویای افلاک"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                تیم‌ها
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                نسل آینده فوتبال
-                            </h3>
-
-                            <p>
-                                بازیکنان رده‌های پایه در کنار یکدیگر؛ شروع مسیری برای ساختن آینده.
-                            </p>
-
-                            <time datetime="2026-05-18">
-                                <span>◷</span>
-                                ۲۸ اردیبهشت ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PHOTO 06 -->
-
-                    <article class="gallery-card" data-category="events">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-06.webp"
-                            data-title="یک روز به‌یادماندنی"
-                            data-description="یکی از روزهای خاطره‌انگیز آکادمی در کنار بازیکنان و خانواده‌هایشان."
-                            data-date="۱۵ اردیبهشت ۱۴۰۵" aria-label="مشاهده عکس یک روز به یادماندنی">
-
-                            <img src="images/gallery/gallery-06.webp" alt="رویداد مدرسه فوتبال رویای افلاک"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                رویدادها
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                یک روز به‌یادماندنی
-                            </h3>
-
-                            <p>
-                                یکی از روزهای خاطره‌انگیز آکادمی در کنار بازیکنان و خانواده‌هایشان.
-                            </p>
-
-                            <time datetime="2026-05-05">
-                                <span>◷</span>
-                                ۱۵ اردیبهشت ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PHOTO 07 -->
-
-                    <article class="gallery-card" data-category="matches">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-07.webp"
-                            data-title="در قلب مسابقه"
-                            data-description="تمرکز و تلاش بازیکنان در یکی از لحظات حساس مسابقه."
-                            data-date="۰۲ اردیبهشت ۱۴۰۵" aria-label="مشاهده عکس در قلب مسابقه">
-
-                            <img src="images/gallery/gallery-07.webp" alt="بازیکنان رویای افلاک در مسابقه"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                مسابقات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                در قلب مسابقه
-                            </h3>
-
-                            <p>
-                                تمرکز و تلاش بازیکنان در یکی از لحظات حساس مسابقه.
-                            </p>
-
-                            <time datetime="2026-04-22">
-                                <span>◷</span>
-                                ۰۲ اردیبهشت ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PHOTO 08 -->
-
-                    <article class="gallery-card" data-category="training">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/gallery-08.webp"
-                            data-title="تلاش، هر روز"
-                            data-description="تمرین مداوم و تکرار؛ بخش جدایی‌ناپذیر مسیر پیشرفت هر بازیکن."
-                            data-date="۲۵ فروردین ۱۴۰۵" aria-label="مشاهده عکس تلاش هر روز">
-
-                            <img src="images/gallery/gallery-08.webp" alt="تمرین روزانه بازیکنان رویای افلاک"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-
-                                <span class="view-icon">
-                                    ↗
-                                </span>
-
-                            </span>
-
-                            <span class="image-category">
-                                تمرینات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                تلاش، هر روز
-                            </h3>
-
-                            <p>
-                                تمرین مداوم و تکرار؛ بخش جدایی‌ناپذیر مسیر پیشرفت هر بازیکن.
-                            </p>
-
-                            <time datetime="2026-04-15">
-                                <span>◷</span>
-                                ۲۵ فروردین ۱۴۰۵
-                            </time>
-
-                        </div>
-
-                    </article>
-
+                    ==================================================
+                    -->
 
                 </div>
 
 
-                <!-- Empty State -->
+                <!-- ================= EMPTY STATE ================= -->
 
-                <div class="gallery-empty" id="galleryEmpty">
+                <div class="gallery-empty active" id="galleryEmpty">
 
                     <div class="empty-icon">
                         ⚽
                     </div>
 
                     <h3>
-                        تصویری در این دسته وجود ندارد
+                        هنوز تصویری در گالری قرار نگرفته است
                     </h3>
 
                     <p>
-                        برای مشاهده تصاویر، دسته‌ی دیگری را انتخاب کنید.
+                        تصاویر جدید آکادمی به‌زودی در این بخش قرار می‌گیرند.
                     </p>
 
                 </div>
@@ -749,33 +415,23 @@
                     <ul>
 
                         <li>
-                            <a href="index.html">
-                                خانه
-                            </a>
+                            <a href="index.html">خانه</a>
                         </li>
 
                         <li>
-                            <a href="about.html">
-                                درباره ما
-                            </a>
+                            <a href="about.html">درباره ما</a>
                         </li>
 
                         <li>
-                            <a href="teams.html">
-                                رده‌های سنی
-                            </a>
+                            <a href="teams.html">رده‌های سنی</a>
                         </li>
 
                         <li>
-                            <a href="coaches.html">
-                                مربیان
-                            </a>
+                            <a href="coaches.html">مربیان</a>
                         </li>
 
                         <li>
-                            <a href="gallery.html">
-                                گالری
-                            </a>
+                            <a href="gallery.html">گالری</a>
                         </li>
 
                     </ul>
@@ -799,14 +455,17 @@
 
                         <li>
                             <span>
-                                لرستان - خرم آباد - گلدشت غربی - اکباتان 5
+                                لرستان - خرم آباد - گلدشت غربی -
+                                اکباتان 5
                                 جنب پارک جانبازان
                             </span>
                         </li>
 
                         <li>
                             <a href="#" target="_blank" rel="noopener noreferrer">
+
                                 Instagram
+
                             </a>
                         </li>
 
@@ -825,11 +484,13 @@
 
                 <p>
                     Designed &amp; Developed by
+
                     <strong>
                         <a href="https://khoshnamay.ir/profiles/parham/">
                             ParhamDerikvand
                         </a>
                     </strong>
+
                 </p>
 
             </div>
@@ -864,20 +525,13 @@
             <div class="lightbox-info">
 
                 <span class="lightbox-category" id="lightboxCategory">
-                    گالری
                 </span>
 
-                <h2 id="lightboxTitle">
-                    عنوان تصویر
-                </h2>
+                <h2 id="lightboxTitle"></h2>
 
-                <p id="lightboxDescription">
-                    توضیحات تصویر
-                </p>
+                <p id="lightboxDescription"></p>
 
-                <time id="lightboxDate">
-                    تاریخ
-                </time>
+                <time id="lightboxDate"></time>
 
             </div>
 
@@ -886,7 +540,6 @@
     </div>
 
 
-    <!-- Gallery JS -->
     <script src="js/gallery.js"></script>
 
 </body>
