@@ -346,13 +346,14 @@ ul {
 
 
 /* =========================================
-   HERO
+   HERO - SCANLINE ONLY ON BACKGROUND
 ========================================= */
 
 .hero {
     position: relative;
 
-    min-height: 760px;
+    min-height: 100vh;
+    min-height: 100dvh;
 
     display: flex;
     align-items: center;
@@ -361,33 +362,390 @@ ul {
         url("../images/hero.jpg") center center / cover no-repeat;
 
     isolation: isolate;
+
+    overflow: hidden;
 }
 
-.hero-overlay {
-    position: absolute;
-    inset: 0;
+/* =========================================
+   SCANLINE LAYER - روی پس‌زمینه اعمال می‌شود
+   و روی متن تاثیر نمی‌گذارد
+========================================= */
 
-    z-index: -1;
-
-    background:
-        linear-gradient(90deg,
-            rgba(7, 17, 13, 0.3) 0%,
-            rgba(7, 17, 13, 0.72) 55%,
-            rgba(7, 17, 13, 0.98) 100%);
-}
-
-.hero::after {
+.hero::before {
     content: '';
 
     position: absolute;
     inset: 0;
 
-    z-index: -1;
+    z-index: 0;
+
+    /* Horizontal scanlines */
+    background:
+        repeating-linear-gradient(to bottom,
+            transparent 0px,
+            transparent 2px,
+            rgba(0, 0, 0, 0.07) 2px,
+            rgba(0, 0, 0, 0.07) 3px,
+            transparent 3px,
+            transparent 5px),
+        repeating-linear-gradient(to bottom,
+            transparent 0px,
+            transparent 5px,
+            rgba(255, 255, 255, 0.015) 5px,
+            rgba(255, 255, 255, 0.015) 6px,
+            transparent 6px,
+            transparent 10px),
+        repeating-linear-gradient(to right,
+            transparent 0px,
+            transparent 1px,
+            rgba(255, 255, 255, 0.008) 1px,
+            rgba(255, 255, 255, 0.008) 2px,
+            transparent 2px,
+            transparent 4px);
+
+    /* ترکیب با پس‌زمینه */
+    mix-blend-mode: multiply;
+
+    /* آنیمیشن */
+    animation: scanlineMove 12s linear infinite;
+
+    pointer-events: none;
+}
+
+/* =========================================
+   OVERLAY - روی scanline قرار می‌گیرد
+========================================= */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
 
     background:
         linear-gradient(to top,
             var(--bg-main) 0%,
-            transparent 18%);
+            transparent 30%),
+        linear-gradient(0deg,
+            rgba(7, 17, 13, 0.25) 0%,
+            rgba(7, 17, 13, 0.55) 40%,
+            rgba(7, 17, 13, 0.82) 70%,
+            rgba(7, 17, 13, 0.95) 100%);
+}
+
+/* =========================================
+   CONTENT - بالاتر از همه
+========================================= */
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(var(--container-width), 92%);
+    margin-inline: auto;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes scanlineMove {
+    0% {
+        background-position: 0 0, 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 0 100%, 0 100%, 0 0;
+    }
+}
+
+/* =========================================
+   HERO CONTENT STYLES
+========================================= */
+
+.hero-content {
+    max-width: 760px;
+
+    padding-top: 40px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 16px 7px 18px;
+
+    border: 1px solid rgba(182, 255, 84, 0.2);
+    border-radius: 50px;
+
+    background: rgba(182, 255, 84, 0.06);
+
+    color: var(--accent);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    margin-bottom: 28px;
+
+    backdrop-filter: blur(4px);
+
+    position: relative;
+    z-index: 3;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+
+    background: var(--accent);
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 12px rgba(182, 255, 84, 0.6);
+
+    animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+}
+
+.hero h1 {
+    max-width: 800px;
+
+    font-size: clamp(44px, 7vw, 82px);
+
+    font-weight: 900;
+    line-height: 1.15;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 22px;
+
+    position: relative;
+    z-index: 3;
+}
+
+.hero h1 span {
+    color: var(--accent);
+
+    display: block;
+}
+
+.hero-content>p {
+    max-width: 570px;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+    line-height: 2;
+
+    margin-bottom: 38px;
+
+    position: relative;
+    z-index: 3;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+    position: relative;
+    z-index: 3;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn-primary,
+.btn-secondary {
+    min-height: 54px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 0 28px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg-main);
+}
+
+.btn-primary:hover {
+    background: #c8ff7b;
+    color: var(--bg-main);
+
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(182, 255, 84, 0.2);
+}
+
+.btn-primary span {
+    font-size: 18px;
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    border-color: rgba(182, 255, 84, 0.3);
+
+    background: rgba(182, 255, 84, 0.06);
+
+    color: var(--accent);
+
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.scroll-indicator {
+    position: absolute;
+
+    left: 5%;
+    bottom: 40px;
+
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    transform: rotate(-90deg);
+    transform-origin: left center;
+
+    opacity: 0.6;
+
+    transition: var(--transition);
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.scroll-line {
+    width: 50px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+    .hero {
+        min-height: 90vh;
+        min-height: 90dvh;
+    }
+
+    .hero-content {
+        padding-top: 30px;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 9vw, 56px);
+    }
+
+    .hero-content>p {
+        font-size: 15px;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    .hero::before {
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 550px) {
+    .hero {
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        background-position: 65% center;
+    }
+
+    .hero h1 {
+        font-size: clamp(34px, 10vw, 44px);
+
+        letter-spacing: -1px;
+    }
+
+    .hero-content>p {
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-badge {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+
+    .hero::before {
+        opacity: 0.5;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero::before {
+        animation: none;
+    }
+
+    .badge-dot {
+        animation: none;
+    }
 }
 
 
