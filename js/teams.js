@@ -387,7 +387,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    /* ---------- Deep Link From URL ---------- */
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const ageFromUrl = urlParams.get("age");
+
+    if (ageFromUrl) {
+
+        const matchingButton = Array.from(ageButtons).find(
+            btn => btn.dataset.age === ageFromUrl
+        );
+
+        if (matchingButton) {
+
+            matchingButton.click();
+
+        }
+
+    }
     /* ---------- Initial State ---------- */
 
     updatePlayers();
