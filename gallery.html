@@ -34,9 +34,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Gallery CSS -->
-    <link rel="stylesheet" href="css/gallery.css">
+    <!-- Site CSS (ترتیب مهم است: index.css اول، gallery.css بعد) -->
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/gallery.css">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
                         </li>
 
                         <li>
-                            <a href="gallery.html" class="active">گالری</a>
+                            <a href="gallery.html" class="active" aria-current="page">گالری</a>
                         </li>
 
                         <li>
@@ -112,8 +112,6 @@
 
         <div class="mobile-menu" id="mainMenu">
 
-            <div class="container">
-
                 <ul>
 
                     <li>
@@ -133,7 +131,7 @@
                     </li>
 
                     <li>
-                        <a href="gallery.html">گالری</a>
+                        <a href="gallery.html" aria-current="page">گالری</a>
                     </li>
 
                     <li>
@@ -152,8 +150,6 @@
 
                 </ul>
 
-            </div>
-
         </div>
 
     </header>
@@ -165,11 +161,13 @@
 
         <!-- ================= HERO ================= -->
 
-        <section class="gallery-hero">
+        <section class="hero page-hero">
 
-            <div class="container">
+            <div class="hero-overlay"></div>
 
-                <div class="gallery-hero-content">
+            <div class="hero-container">
+
+                <div class="hero-content">
 
                     <span class="hero-badge">
                         <span class="badge-dot"></span>
@@ -195,19 +193,21 @@
 
         <!-- ================= GALLERY ================= -->
 
-        <section class="gallery-section">
+        <section class="gallery-section section-padding">
 
             <div class="container">
 
                 <div class="section-heading">
 
-                    <span class="section-tag">
-                        خاطرات رویای افلاک
-                    </span>
+                    <div>
+                        <span class="section-badge">
+                            خاطرات رویای افلاک
+                        </span>
 
-                    <h2>
-                        گالری آکادمی
-                    </h2>
+                        <h2>
+                            گالری <span>آکادمی</span>
+                        </h2>
+                    </div>
 
                     <p>
                         لحظه‌های ثبت‌شده از تمرینات، مسابقات،
@@ -222,254 +222,33 @@
                 <div class="gallery-filters" role="group" aria-label="فیلتر گالری">
 
                     <button class="gallery-filter active" type="button" data-filter="all">
-
                         همه
-
                     </button>
 
                     <button class="gallery-filter" type="button" data-filter="training">
-
                         تمرینات
-
                     </button>
 
                     <button class="gallery-filter" type="button" data-filter="matches">
-
                         مسابقات
-
                     </button>
 
                     <button class="gallery-filter" type="button" data-filter="teams">
-
                         تیم‌ها
-
                     </button>
 
                     <button class="gallery-filter" type="button" data-filter="events">
-
                         رویدادها
-
                     </button>
 
                 </div>
 
 
-                <!-- ================= GALLERY GRID ================= -->
-
-                <div class="gallery-grid" id="galleryGrid">
-
-                    <!--
-                    ==================================================
-                    GALLERY CARD TEMPLATE
-
-                    برای اضافه کردن تصویر جدید، این ساختار را کپی کن
-                    و اطلاعات واقعی خودت را داخلش قرار بده.
-
-                    data-category:
-                    training
-                    matches
-                    teams
-                    events
-
-                    ==================================================
-                    
-                    <article class="gallery-card" data-category="training">
-
-                        <button
-                            class="gallery-image"
-                            type="button"
-
-                            data-image="images/gallery/example.webp"
-                            data-title="عنوان تصویر"
-                            data-description="توضیحات تصویر"
-                            data-date="تاریخ تصویر"
-
-                            aria-label="مشاهده عنوان تصویر">
-
-                            <img
-                                src="images/gallery/example.webp"
-                                alt="توضیح مناسب برای تصویر"
-                                loading="lazy">
-
-                            <span class="image-overlay">
-                                <span class="view-icon">↗</span>
-                            </span>
-
-                            <span class="image-category">
-                                تمرینات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                عنوان تصویر
-                            </h3>
-
-                            <p>
-                                توضیحات تصویر
-                            </p>
-
-                            <time datetime="2026-01-01">
-                                <span>◷</span>
-                                تاریخ تصویر
-                            </time>
-
-                        </div>
-
-                    </article>
-
-                    ==================================================
-                    -->
-                    <article class="gallery-card" data-category="training">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/coach1035.webp"
-                            data-title="مربی در سال 1394" data-description="بابک مدنی در سال 1394" data-date="1394"
-                            aria-label="مشاهده عنوان تصویر">
-
-                            <img src="images/gallery/coach1035.webp" alt="توضیح مناسب برای تصویر" loading="lazy">
-
-                            <span class="image-overlay">
-                                <span class="view-icon">↗</span>
-                            </span>
-
-                            <span class="image-category">
-                                تمرینات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                بابک مدنی در سال 1394
-                            </h3>
-
-                            <p>
-                                تصویری از مربی رویای افلاک، بابک مدنی در سال 1394 در حین تمرین
-                            </p>
-
-                            <time datetime="1394-08-20">
-                                <span>◷</span>
-                                تاریخ تصویر
-                            </time>
-
-                        </div>
-
-                    </article>
-
-                    <article class="gallery-card" data-category="training">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/coach1035.webp"
-                            data-title="مربی در سال 1394" data-description="بابک مدنی در سال 1394" data-date="1394"
-                            aria-label="مشاهده عنوان تصویر">
-
-                            <img src="images/gallery/coach1035.webp" alt="توضیح مناسب برای تصویر" loading="lazy">
-
-                            <span class="image-overlay">
-                                <span class="view-icon">↗</span>
-                            </span>
-
-                            <span class="image-category">
-                                تمرینات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                بابک مدنی در سال 1394
-                            </h3>
-
-                            <p>
-                                تصویری از مربی رویای افلاک، بابک مدنی در سال 1394 در حین تمرین
-                            </p>
-
-                            <time datetime="1394-08-20">
-                                <span>◷</span>
-                                تاریخ تصویر
-                            </time>
-
-                        </div>
-
-                    </article>
-
-                    <article class="gallery-card" data-category="training">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/coach1035.webp"
-                            data-title="مربی در سال 1394" data-description="بابک مدنی در سال 1394" data-date="1394"
-                            aria-label="مشاهده عنوان تصویر">
-
-                            <img src="images/gallery/coach1035.webp" alt="توضیح مناسب برای تصویر" loading="lazy">
-
-                            <span class="image-overlay">
-                                <span class="view-icon">↗</span>
-                            </span>
-
-                            <span class="image-category">
-                                تمرینات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                بابک مدنی در سال 1394
-                            </h3>
-
-                            <p>
-                                تصویری از مربی رویای افلاک، بابک مدنی در سال 1394 در حین تمرین
-                            </p>
-
-                            <time datetime="1394-08-20">
-                                <span>◷</span>
-                                تاریخ تصویر
-                            </time>
-
-                        </div>
-
-                    </article>
-
-                    <article class="gallery-card" data-category="matches">
-
-                        <button class="gallery-image" type="button" data-image="images/gallery/coach1035.webp"
-                            data-title="مربی در سال 1394" data-description="بابک مدنی در سال 1394" data-date="1394"
-                            aria-label="مشاهده عنوان تصویر">
-
-                            <img src="images/gallery/coach1035.webp" alt="توضیح مناسب برای تصویر" loading="lazy">
-
-                            <span class="image-overlay">
-                                <span class="view-icon">↗</span>
-                            </span>
-
-                            <span class="image-category">
-                                مسابقات
-                            </span>
-
-                        </button>
-
-                        <div class="gallery-info">
-
-                            <h3>
-                                بابک مدنی در سال 1394
-                            </h3>
-
-                            <p>
-                                تصویری از مربی رویای افلاک، بابک مدنی در سال 1394 در حین تمرین
-                            </p>
-
-                            <time datetime="1394-08-20">
-                                <span>◷</span>
-                                تاریخ تصویر
-                            </time>
-
-                        </div>
-
-                    </article>
-                </div>
+                <!-- ================= GALLERY GRID =================
+                     کارت‌ها از js/gallery-data.js ساخته می‌شوند.
+                     برای افزودن تصویر جدید فقط آن فایل را ویرایش کن. -->
+
+                <div class="gallery-cards" id="galleryGrid"></div>
 
 
                 <!-- ================= EMPTY STATE ================= -->
@@ -494,172 +273,190 @@
 
         </section>
 
-
-        <!-- ================= FOOTER ================= -->
-
-        <footer class="site-footer">
-
-            <div class="container">
-
-                <div class="footer-grid">
-
-                    <div class="footer-brand">
-
-                        <a href="index.html" class="brand">
-
-                            <span class="brand-icon" aria-hidden="true">
-                                ⚽
-                            </span>
-
-                            <span class="brand-text">
-                                رویای افلاک
-                            </span>
-
-                        </a>
-
-                        <p>
-                            ساختن بازیکنانی بهتر،
-                            برای ساختن آینده‌ای بهتر.
-                        </p>
-
-                    </div>
+    </main>
 
 
-                    <div class="footer-column">
+    <!-- ================= FOOTER ================= -->
 
-                        <h3>
-                            دسترسی سریع
-                        </h3>
+    <footer class="site-footer">
 
-                        <ul>
+        <div class="container">
 
-                            <li>
-                                <a href="index.html">خانه</a>
-                            </li>
+            <div class="footer-grid">
 
-                            <li>
-                                <a href="about.html">درباره ما</a>
-                            </li>
+                <div class="footer-brand">
 
-                            <li>
-                                <a href="teams.html">رده‌های سنی</a>
-                            </li>
+                    <a href="index.html" class="brand">
 
-                            <li>
-                                <a href="coaches.html">مربیان</a>
-                            </li>
+                        <span class="brand-icon" aria-hidden="true">
+                            ⚽
+                        </span>
 
-                            <li>
-                                <a href="gallery.html">گالری</a>
-                            </li>
+                        <span class="brand-text">
+                            رویای افلاک
+                        </span>
 
-                        </ul>
+                    </a>
 
-                    </div>
-
-
-                    <div class="footer-column">
-
-                        <h3>
-                            ارتباط با ما
-                        </h3>
-
-                        <ul>
-
-                            <li>
-                                <a href="tel:+989120329713">
-                                    09120329713
-                                </a>
-                            </li>
-
-                            <li>
-                                <span>
-                                    لرستان - خرم آباد - گلدشت غربی -
-                                    اکباتان 5
-                                    جنب پارک جانبازان
-                                </span>
-                            </li>
-
-                            <li>
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-
-                                    Instagram
-
-                                </a>
-                            </li>
-
-                        </ul>
-
-                    </div>
+                    <p>
+                        ساختن بازیکنانی بهتر،
+                        برای ساختن آینده‌ای بهتر.
+                    </p>
 
                 </div>
 
 
-                <div class="footer-bottom">
+                <div class="footer-column">
 
-                    <p>
-                        © 2026 رویای افلاک — تمامی حقوق محفوظ است.
-                    </p>
+                    <h3>
+                        دسترسی سریع
+                    </h3>
 
-                    <p>
-                        Designed &amp; Developed by
+                    <ul>
 
-                        <strong>
-                            <a href="https://khoshnamay.ir/profiles/parham/">
-                                ParhamDerikvand
+                        <li>
+                            <a href="index.html">خانه</a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">درباره ما</a>
+                        </li>
+
+                        <li>
+                            <a href="teams.html">رده‌های سنی</a>
+                        </li>
+
+                        <li>
+                            <a href="coaches.html">مربیان</a>
+                        </li>
+
+                        <li>
+                            <a href="gallery.html">گالری</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        ارتباط با ما
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <a href="tel:+989120329713">
+                                09120329713
                             </a>
-                        </strong>
+                        </li>
 
-                    </p>
+                        <li>
+                            <span>
+                                لرستان - خرم آباد - گلدشت غربی -
+                                اکباتان 5
+                                جنب پارک جانبازان
+                            </span>
+                        </li>
+
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">
+                                Instagram
+                            </a>
+                        </li>
+
+                    </ul>
 
                 </div>
 
             </div>
 
-        </footer>
 
+            <div class="footer-bottom">
 
-        <!-- ================= LIGHTBOX ================= -->
+                <p>
+                    © 2026 رویای افلاک — تمامی حقوق محفوظ است.
+                </p>
 
-        <div class="lightbox" id="lightbox" aria-hidden="true">
+                <p>
+                    Designed &amp; Developed by
 
-            <div class="lightbox-backdrop"></div>
+                    <strong>
+                        <a href="https://khoshnamay.ir/profiles/parham/">
+                            ParhamDerikvand
+                        </a>
+                    </strong>
 
-            <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="نمایش تصویر">
-
-                <button class="lightbox-close" id="lightboxClose" type="button" aria-label="بستن">
-
-                    ×
-
-                </button>
-
-
-                <div class="lightbox-image-wrapper">
-
-                    <img id="lightboxImage" src="" alt="">
-
-                </div>
-
-
-                <div class="lightbox-info">
-
-                    <span class="lightbox-category" id="lightboxCategory">
-                    </span>
-
-                    <h2 id="lightboxTitle"></h2>
-
-                    <p id="lightboxDescription"></p>
-
-                    <time id="lightboxDate"></time>
-
-                </div>
+                </p>
 
             </div>
 
         </div>
 
+    </footer>
 
-        <script src="js/gallery.js"></script>
+
+    <!-- ================= LIGHTBOX ================= -->
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+
+        <div class="lightbox-backdrop"></div>
+
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="نمایش تصویر">
+
+            <button class="lightbox-close" id="lightboxClose" type="button" aria-label="بستن">
+                ×
+            </button>
+
+
+            <div class="lightbox-image-wrapper">
+
+                <img id="lightboxImage" alt="">
+
+            </div>
+
+
+            <div class="lightbox-info">
+
+                <span class="lightbox-category" id="lightboxCategory"></span>
+
+                <h2 id="lightboxTitle"></h2>
+
+                <p id="lightboxDescription"></p>
+
+                <time id="lightboxDate"></time>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CARD TEMPLATE ================= -->
+
+    <template id="galleryCardTemplate">
+        <article class="gallery-card">
+            <button class="gallery-image" type="button">
+                <img alt="" loading="lazy" decoding="async">
+                <span class="image-overlay"><span class="view-icon">↗</span></span>
+                <span class="image-category"></span>
+            </button>
+            <div class="gallery-info">
+                <h3></h3>
+                <p></p>
+                <time><span>◷</span></time>
+            </div>
+        </article>
+    </template>
+
+
+    <!-- ================= SCRIPTS (هرکدام فقط یک‌بار) ================= -->
+
+    <script src="js/gallery-data.js"></script>
+    <script src="js/gallery.js"></script>
 
 </body>
 

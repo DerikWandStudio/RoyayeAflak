@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GALLERY
+       GALLERY - ELEMENTS & DATA
     ===================================================== */
 
     const galleryGrid =
@@ -98,11 +98,91 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButtons =
         document.querySelectorAll(".gallery-filter");
 
+    /* galleryItems از js/gallery-data.js می‌آید */
+
+    const items =
+        typeof galleryItems !== "undefined"
+            ? galleryItems
+            : [];
+
+    const categoryNames = {
+
+        training: "تمرینات",
+        matches: "مسابقات",
+        teams: "تیم‌ها",
+        events: "رویدادها"
+
+    };
+
 
     const getCards = () =>
         galleryGrid
             ? galleryGrid.querySelectorAll(".gallery-card")
             : [];
+
+
+    /* =====================================================
+       RENDER CARDS
+    ===================================================== */
+
+    const renderGallery = () => {
+
+        const template =
+            document.getElementById("galleryCardTemplate");
+
+        if (!galleryGrid || !template) {
+            return;
+        }
+
+        const fragment =
+            document.createDocumentFragment();
+
+        items.forEach((item, index) => {
+
+            const card =
+                template.content.firstElementChild.cloneNode(true);
+
+            card.dataset.category = item.category;
+
+            const button =
+                card.querySelector(".gallery-image");
+
+            button.dataset.index = index;
+
+            button.setAttribute(
+                "aria-label",
+                "مشاهده تصویر: " + item.title
+            );
+
+            const img = card.querySelector("img");
+
+            img.src = item.image;
+            img.alt = item.alt || item.title;
+
+            card.querySelector(".image-category").textContent =
+                categoryNames[item.category] || "گالری";
+
+            card.querySelector("h3").textContent =
+                item.title;
+
+            card.querySelector(".gallery-info p").textContent =
+                item.description;
+
+            const time = card.querySelector("time");
+
+            if (item.iso) {
+                time.dateTime = item.iso;
+            }
+
+            time.append(" " + item.date);
+
+            fragment.appendChild(card);
+
+        });
+
+        galleryGrid.appendChild(fragment);
+
+    };
 
 
     /* =====================================================
@@ -159,16 +239,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             /* Filter cards */
 
-            const cards = getCards();
-
-            cards.forEach(card => {
-
-                const category =
-                    card.dataset.category;
+            getCards().forEach(card => {
 
                 const shouldShow =
                     filter === "all" ||
-                    category === filter;
+                    card.dataset.category === filter;
 
                 card.classList.toggle(
                     "hidden",
@@ -186,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       LIGHTBOX
+       LIGHTBOX - ELEMENTS
     ===================================================== */
 
     const lightbox =
@@ -213,72 +288,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxBackdrop =
         document.querySelector(".lightbox-backdrop");
 
-
-    const categoryNames = {
-
-        training: "تمرینات",
-        matches: "مسابقات",
-        teams: "تیم‌ها",
-        events: "رویدادها"
-
-    };
+    let lastFocused = null;
 
 
     /* =====================================================
        OPEN LIGHTBOX
     ===================================================== */
 
-    const openLightbox = (button) => {
+    const openLightbox = (item) => {
 
-        if (
-            !lightbox ||
-            !lightboxImage
-        ) {
+        if (!lightbox || !lightboxImage) {
             return;
         }
 
+        lastFocused = document.activeElement;
 
-        const image =
-            button.dataset.image || "";
-
-        const title =
-            button.dataset.title || "";
-
-        const description =
-            button.dataset.description || "";
-
-        const date =
-            button.dataset.date || "";
-
-
-        const card =
-            button.closest(".gallery-card");
-
-        const category =
-            card?.dataset.category || "";
-
-
-        lightboxImage.src = image;
-        lightboxImage.alt = title;
+        lightboxImage.src = item.image;
+        lightboxImage.alt = item.alt || item.title;
 
         if (lightboxTitle) {
-            lightboxTitle.textContent = title;
+            lightboxTitle.textContent = item.title;
         }
 
         if (lightboxDescription) {
-            lightboxDescription.textContent =
-                description;
+            lightboxDescription.textContent = item.description;
         }
 
         if (lightboxDate) {
-            lightboxDate.textContent = date;
+            lightboxDate.textContent = item.date;
         }
 
         if (lightboxCategory) {
             lightboxCategory.textContent =
-                categoryNames[category] || "گالری";
+                categoryNames[item.category] || "گالری";
         }
-
 
         lightbox.classList.add("active");
 
@@ -299,27 +342,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GALLERY IMAGE EVENTS
+       GALLERY IMAGE CLICK (Event Delegation)
     ===================================================== */
 
-    const setupLightboxButtons = () => {
+    if (galleryGrid) {
 
-        const galleryImages =
-            document.querySelectorAll(".gallery-image");
+        galleryGrid.addEventListener("click", event => {
 
-        galleryImages.forEach(button => {
+            const button =
+                event.target.closest(".gallery-image");
 
-            button.addEventListener(
-                "click",
-                () => openLightbox(button)
-            );
+            if (!button) {
+                return;
+            }
+
+            const item =
+                items[Number(button.dataset.index)];
+
+            if (item) {
+                openLightbox(item);
+            }
 
         });
 
-    };
-
-
-    setupLightboxButtons();
+    }
 
 
     /* =====================================================
@@ -343,6 +389,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "lightbox-open"
         );
 
+        if (lastFocused) {
+            lastFocused.focus();
+            lastFocused = null;
+        }
 
         setTimeout(() => {
 
@@ -351,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 !lightbox.classList.contains("active")
             ) {
 
-                lightboxImage.src = "";
+                lightboxImage.removeAttribute("src");
 
             }
 
@@ -432,6 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
        INITIAL STATE
     ===================================================== */
 
+    renderGallery();
     updateEmptyState();
 
 });
