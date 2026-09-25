@@ -1,18 +1,26 @@
+const SUPABASE_URL = "https://nqzlxhcpildvorrkaroi.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_UkOgX2vv_qvTYoQ76Hyreg_lGQn-fv7";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("registerForm");
     const message = document.getElementById("formMessage");
-
     const textarea = document.getElementById("message");
     const charCount = document.getElementById("charCount");
-
     const parentPhone = document.getElementById("parentPhone");
     const playerPhone = document.getElementById("playerPhone");
+    const birthDateInput = document.getElementById("birthDate");
 
 
-    /* =========================================
-       CHARACTER COUNTER
-    ========================================== */
+    // =========================================
+    // CHARACTER COUNTER
+    // =========================================
 
     if (textarea && charCount) {
 
@@ -26,9 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       PHONE NORMALIZER
-    ========================================== */
+    // =========================================
+    // PHONE NORMALIZER
+    // =========================================
 
     function normalizePhone(value) {
 
@@ -44,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       VALIDATE PHONE
-    ========================================== */
+    // =========================================
+    // VALIDATE PHONE
+    // =========================================
 
     function isValidPhone(value) {
 
@@ -57,9 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       PHONE INPUTS
-    ========================================== */
+    // =========================================
+    // PHONE INPUTS
+    // =========================================
 
     [parentPhone, playerPhone].forEach((input) => {
 
@@ -77,9 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =========================================
-       SHOW MESSAGE
-    ========================================== */
+    // =========================================
+    // SHOW MESSAGE
+    // =========================================
 
     function showMessage(text, type) {
 
@@ -89,121 +97,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         message.textContent = text;
 
-        message.className =
-            `form-message ${type}`;
-
-    }
-    /* =========================================
-       JALALI BIRTH DATE
-    ========================================= */
-
-    const birthYear = document.getElementById("birthYear");
-    const birthMonth = document.getElementById("birthMonth");
-    const birthDay = document.getElementById("birthDay");
-
-    if (birthYear && birthMonth && birthDay) {
-
-        /*
-         * سال‌های مناسب برای ثبت‌نام
-         * فعلاً از 1350 تا 1400
-         */
-
-        for (let year = 1400; year >= 1350; year--) {
-
-            const option = document.createElement("option");
-
-            option.value = year;
-            option.textContent = year.toLocaleString("fa-IR");
-
-            birthYear.appendChild(option);
-        }
-
-
-        /*
-         * ساخت روزهای ماه
-         */
-
-        function updateBirthDays() {
-
-            const month = Number(birthMonth.value);
-
-            const previousValue = birthDay.value;
-
-            birthDay.innerHTML = `
-            <option value="">
-                روز
-            </option>
-        `;
-
-            if (!month) {
-                return;
-            }
-
-            const daysInMonth = month <= 6 ? 31 : 30;
-
-            for (let day = 1; day <= daysInMonth; day++) {
-
-                const option = document.createElement("option");
-
-                option.value = day;
-                option.textContent = day.toLocaleString("fa-IR");
-
-                birthDay.appendChild(option);
-            }
-
-            /*
-             * حفظ روز قبلی در صورت معتبر بودن
-             */
-
-            if (
-                previousValue &&
-                Number(previousValue) <= daysInMonth
-            ) {
-                birthDay.value = previousValue;
-            }
-
-        }
-
-
-        birthMonth.addEventListener(
-            "change",
-            updateBirthDays
-        );
+        message.className = `form-message ${type}`;
 
     }
 
 
-    /* =========================================
-       BIRTH DATE VALIDATION
-    ========================================= */
-
-    function isValidBirthDate() {
-
-        if (
-            !birthYear ||
-            !birthMonth ||
-            !birthDay
-        ) {
-            return false;
-        }
-
-        return (
-            birthYear.value !== "" &&
-            birthMonth.value !== "" &&
-            birthDay.value !== ""
-        );
-
-    }
-
-    /* =========================================
-       FORM SUBMIT
-    ========================================== */
+    // =========================================
+    // FORM SUBMIT
+    // =========================================
 
     if (form) {
 
-        form.addEventListener("submit", (event) => {
+        form.addEventListener("submit", async (event) => {
 
             event.preventDefault();
+
+
+            // =========================================
+            // HTML VALIDATION
+            // =========================================
 
             if (!form.checkValidity()) {
 
@@ -218,6 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
+            // =========================================
+            // PARENT PHONE VALIDATION
+            // =========================================
 
             if (
                 parentPhone &&
@@ -235,6 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
+            // =========================================
+            // PLAYER PHONE VALIDATION
+            // =========================================
 
             if (
                 playerPhone &&
@@ -254,16 +174,195 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /*
-             * فعلاً ارسال واقعی وجود ندارد.
-             * بعداً همین قسمت را به Backend یا
-             * سرویس فرم متصل می‌کنیم.
-             */
+            // =========================================
+            // BIRTH DATE VALIDATION
+            // =========================================
+
+            const birthDate = birthDateInput
+                ? birthDateInput.value.trim()
+                : "";
+
+            if (!/^\d{4}\/\d{2}\/\d{2}$/.test(birthDate)) {
+
+                if (birthDateInput) {
+                    birthDateInput.focus();
+                }
+
+                showMessage(
+                    "تاریخ تولد را به شکل 1392/05/18 وارد کنید.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            // =========================================
+            // REGISTRATION DATA
+            // =========================================
+
+            const registration = {
+
+                full_name:
+                    document
+                        .getElementById("fullName")
+                        .value
+                        .trim(),
+
+                father_name:
+                    document
+                        .getElementById("fatherName")
+                        .value
+                        .trim(),
+
+                birth_date:
+                    birthDate,
+
+                age_group:
+                    document
+                        .getElementById("ageGroup")
+                        .value,
+
+                position:
+                    document
+                        .getElementById("position")
+                        .value,
+
+                experience:
+                    document
+                        .getElementById("experience")
+                        .value,
+
+                parent_phone:
+                    normalizePhone(parentPhone.value),
+
+                player_phone:
+                    playerPhone &&
+                        playerPhone.value.trim() !== ""
+                        ? normalizePhone(playerPhone.value)
+                        : null,
+
+                message:
+                    textarea
+                        ? textarea.value.trim()
+                        : null
+
+            };
+
+
+            // =========================================
+            // SENDING
+            // =========================================
 
             showMessage(
-                "فرم با موفقیت بررسی شد. در نسخه فعلی، اطلاعات هنوز به سرور ارسال نمی‌شود.",
+                "در حال ارسال درخواست...",
                 "success"
             );
+
+
+            // =========================================
+            // SAVE TO SUPABASE
+            // =========================================
+
+            const { error } = await supabaseClient
+                .from("registrations")
+                .insert([registration]);
+
+
+            if (error) {
+
+                console.error(
+                    "Supabase error:",
+                    error
+                );
+
+                showMessage(
+                    "ارسال درخواست با خطا مواجه شد. لطفاً دوباره تلاش کنید.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            // =========================================
+            // SEND EMAIL
+            // =========================================
+
+            const { error: emailError } =
+                await supabaseClient.functions.invoke(
+                    "hyper-endpoint",
+                    {
+                        body: {
+
+                            fullName:
+                                registration.full_name,
+
+                            fatherName:
+                                registration.father_name,
+
+                            birthDate:
+                                registration.birth_date,
+
+                            ageGroup:
+                                registration.age_group,
+
+                            position:
+                                registration.position,
+
+                            experience:
+                                registration.experience,
+
+                            parentPhone:
+                                registration.parent_phone,
+
+                            playerPhone:
+                                registration.player_phone,
+
+                            message:
+                                registration.message
+
+                        }
+                    }
+                );
+
+
+            if (emailError) {
+
+                console.error("Email error:", emailError);
+
+                showMessage(
+                    "خطای ارسال ایمیل. F12 → Console را بررسی کنید.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // =========================================
+            // SUCCESS
+            // =========================================
+
+            showMessage(
+                "درخواست شما با موفقیت ثبت شد. به‌زودی با شما تماس می‌گیریم.",
+                "success"
+            );
+
+
+            // =========================================
+            // RESET FORM
+            // =========================================
+
+            form.reset();
+
+            if (charCount) {
+
+                charCount.textContent = "۰";
+
+            }
 
         });
 
