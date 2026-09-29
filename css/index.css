@@ -367,13 +367,11 @@ ul {
 }
 
 /* =========================================
-   SCANLINE LAYER - روی پس‌زمینه اعمال می‌شود
-   و روی متن تاثیر نمی‌گذارد
+   SCANLINE LAYER
 ========================================= */
 
 .hero::before {
     content: '';
-
     position: absolute;
     inset: 0;
 
@@ -413,7 +411,7 @@ ul {
 }
 
 /* =========================================
-   OVERLAY - روی scanline قرار می‌گیرد
+   OVERLAY
 ========================================= */
 
 .hero-overlay {
@@ -1293,6 +1291,163 @@ ul {
 
 
 /* =========================================
+   TEAMS PREVIEW
+========================================= */
+
+.teams-preview {
+    position: relative;
+
+    min-height: 330px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 50px;
+
+    padding: 55px 60px;
+
+    background:
+        radial-gradient(circle at 15% 50%,
+            rgba(182, 255, 84, 0.08),
+            transparent 35%),
+        var(--bg-card);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    overflow: hidden;
+}
+
+.teams-preview::before {
+    content: '';
+
+    position: absolute;
+    top: -100px;
+    left: -100px;
+
+    width: 300px;
+    height: 300px;
+
+    border: 1px solid rgba(182, 255, 84, 0.08);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.teams-preview-content {
+    position: relative;
+    z-index: 1;
+
+    max-width: 700px;
+}
+
+.teams-preview-content h2 {
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.4;
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 22px;
+}
+
+.teams-preview-content h2 span {
+    color: var(--accent);
+}
+
+.teams-preview-content p {
+    max-width: 650px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+    line-height: 2;
+
+    margin-bottom: 28px;
+}
+
+.teams-preview-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 21px;
+
+    background: var(--accent);
+    color: var(--bg-main);
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.teams-preview-button:hover {
+    background: #c8ff7b;
+    color: var(--bg-main);
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 30px rgba(182, 255, 84, 0.15);
+}
+
+.teams-preview-button span {
+    font-size: 17px;
+
+    transition: var(--transition);
+}
+
+.teams-preview-button:hover span {
+    transform: translateX(-4px);
+}
+
+.teams-preview-visual {
+    position: relative;
+    z-index: 1;
+
+    flex-shrink: 0;
+
+    width: 190px;
+    height: 190px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(182, 255, 84, 0.06);
+
+    border: 1px solid rgba(182, 255, 84, 0.14);
+    border-radius: 50%;
+}
+
+.teams-preview-icon {
+    margin-bottom: -5px;
+
+    font-size: 28px;
+}
+
+.teams-preview-visual strong {
+    color: var(--accent);
+
+    font-size: 58px;
+    line-height: 1;
+
+    font-weight: 900;
+}
+
+.teams-preview-visual > span {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+
+/* =========================================
    COACHES
 ========================================= */
 
@@ -2004,4 +2159,48 @@ button:focus-visible {
     }
 
 
+}
+
+/* =========================================
+   TEAMS PREVIEW - RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+    .teams-preview {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 40px 28px;
+
+        gap: 35px;
+    }
+
+    .teams-preview-visual {
+        width: 145px;
+        height: 145px;
+
+        align-self: center;
+    }
+
+    .teams-preview-visual strong {
+        font-size: 46px;
+    }
+
+    .teams-preview-icon {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 450px) {
+    .teams-preview {
+        padding: 32px 22px;
+    }
+
+    .teams-preview-content h2 {
+        font-size: 32px;
+    }
+
+    .teams-preview-content p {
+        font-size: 14px;
+    }
 }

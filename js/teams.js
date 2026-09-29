@@ -4,164 +4,87 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-
     /* =====================================
        MOBILE MENU
     ===================================== */
 
-    const menuBtn =
-        document.getElementById("menuBtn");
-
-    const mobileMenu =
-        document.getElementById("mainMenu");
-
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mainMenu");
 
     if (menuBtn && mobileMenu) {
 
+        const setMenu = (open) => {
+            mobileMenu.classList.toggle("active", open);
+            menuBtn.setAttribute("aria-expanded", String(open));
+            menuBtn.setAttribute("aria-label", open ? "بستن منو" : "باز کردن منو");
+        };
+
         menuBtn.addEventListener("click", () => {
-
-            const isOpen =
-                mobileMenu.classList.toggle("active");
-
-            menuBtn.setAttribute(
-                "aria-expanded",
-                isOpen
-            );
-
-            menuBtn.setAttribute(
-                "aria-label",
-                isOpen
-                    ? "بستن منو"
-                    : "باز کردن منو"
-            );
-
+            setMenu(!mobileMenu.classList.contains("active"));
         });
 
-
-        const menuLinks =
-            mobileMenu.querySelectorAll("a");
-
-
-        menuLinks.forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                mobileMenu.classList.remove("active");
-
-                menuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuBtn.setAttribute(
-                    "aria-label",
-                    "باز کردن منو"
-                );
-
-            });
-
+        mobileMenu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => setMenu(false));
         });
-
 
         document.addEventListener("keydown", event => {
-
-            if (
-                event.key === "Escape" &&
-                mobileMenu.classList.contains("active")
-            ) {
-
-                mobileMenu.classList.remove("active");
-
-                menuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuBtn.setAttribute(
-                    "aria-label",
-                    "باز کردن منو"
-                );
-
+            if (event.key === "Escape" && mobileMenu.classList.contains("active")) {
+                setMenu(false);
                 menuBtn.focus();
-
             }
-
         });
 
     }
-
 
 
     /* =====================================
        HEADER SCROLL
     ===================================== */
 
-    const header =
-        document.querySelector(".site-header");
+    const header = document.querySelector(".site-header");
 
-
-    const updateHeader =
-        () => {
-
-            if (!header) return;
-
-            if (window.scrollY > 30) {
-
-                header.classList.add("scrolled");
-
-            } else {
-
-                header.classList.remove("scrolled");
-
-            }
-
-        };
-
+    const updateHeader = () => {
+        if (!header) return;
+        header.classList.toggle("scrolled", window.scrollY > 30);
+    };
 
     updateHeader();
-
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive: true }
-    );
-
+    window.addEventListener("scroll", updateHeader, { passive: true });
 
 
     /* =====================================
        FILTER SYSTEM
     ===================================== */
 
-    const ageButtons =
-        document.querySelectorAll(
-            "[data-age]"
-        );
-
-    const positionButtons =
-        document.querySelectorAll(
-            "[data-position]"
-        );
-
-    const ageCards =
-        document.querySelectorAll(
-            "[data-age-filter]"
-        );
-
-    const playerCards =
-        document.querySelectorAll(
-            ".player-card"
-        );
-
-    const playersEmpty =
-        document.getElementById(
-            "playersEmpty"
-        );
-
+    // فقط دکمه‌های فیلتر (نه کارت بازیکن‌ها که آن‌ها هم data-age دارند)
+    const ageButtons = document.querySelectorAll(".filter-btn[data-age]");
+    const positionButtons = document.querySelectorAll(".filter-btn[data-position]");
+    const ageCards = document.querySelectorAll("[data-age-filter]");
+    const playerCards = document.querySelectorAll(".player-card");
+    const playersEmpty = document.getElementById("playersEmpty");
+    const playersSection = document.getElementById("players");
 
     let activeAge = "all";
-
     let activePosition = "all";
 
+
+    /* ---------- Helpers ---------- */
+
+    function scrollToPlayers() {
+        if (!playersSection) return;
+        setTimeout(() => {
+            playersSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+    }
+
+    function syncAgeUI() {
+        ageButtons.forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.age === activeAge);
+        });
+        ageCards.forEach(card => {
+            card.classList.toggle("active", card.dataset.ageFilter === activeAge);
+        });
+    }
 
 
     /* ---------- Update Players ---------- */
@@ -170,227 +93,85 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let visiblePlayers = 0;
 
-
         playerCards.forEach(card => {
-
-            const cardAge =
-                card.dataset.age;
-
-            const cardPosition =
-                card.dataset.position;
-
 
             const ageMatch =
                 activeAge === "all" ||
-                cardAge === activeAge;
-
+                card.dataset.age === activeAge;
 
             const positionMatch =
                 activePosition === "all" ||
-                cardPosition === activePosition;
+                card.dataset.position === activePosition;
 
-
-            if (
-                ageMatch &&
-                positionMatch
-            ) {
-
+            if (ageMatch && positionMatch) {
                 card.style.display = "";
-
                 visiblePlayers++;
-
             } else {
-
                 card.style.display = "none";
-
             }
 
         });
 
-
         if (playersEmpty) {
-
-            playersEmpty.hidden =
-                visiblePlayers !== 0;
-
+            playersEmpty.hidden = visiblePlayers !== 0;
         }
 
     }
 
 
-
-    /* ---------- Age Filters ---------- */
+    /* ---------- Age Filters (buttons) ---------- */
 
     ageButtons.forEach(button => {
+        button.addEventListener("click", () => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            activeAge = button.dataset.age;
 
-                activeAge =
-                    button.dataset.age;
+            syncAgeUI();
+            updatePlayers();
 
-
-                ageButtons.forEach(btn => {
-
-                    btn.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                ageCards.forEach(card => {
-
-                    card.classList.toggle(
-                        "active",
-                        card.dataset.ageFilter === activeAge
-                    );
-
-                });
-
-
-                updatePlayers();
-
-
-                if (
-                    activeAge !== "all"
-                ) {
-
-                    const playersSection =
-                        document.getElementById(
-                            "players"
-                        );
-
-                    if (playersSection) {
-
-                        setTimeout(() => {
-
-                            playersSection.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start"
-                            });
-
-                        }, 100);
-
-                    }
-
-                }
-
+            if (activeAge !== "all") {
+                scrollToPlayers();
             }
-        );
 
+        });
     });
-
 
 
     /* ---------- Position Filters ---------- */
 
     positionButtons.forEach(button => {
+        button.addEventListener("click", () => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            activePosition = button.dataset.position;
 
-                activePosition =
-                    button.dataset.position;
+            positionButtons.forEach(btn => {
+                btn.classList.toggle("active", btn === button);
+            });
 
+            updatePlayers();
 
-                positionButtons.forEach(btn => {
-
-                    btn.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                updatePlayers();
-
-            }
-        );
-
+        });
     });
-
 
 
     /* ---------- Age Cards ---------- */
 
     ageCards.forEach(card => {
+        card.addEventListener("click", () => {
 
-        card.addEventListener(
-            "click",
-            () => {
+            activeAge = card.dataset.ageFilter;
 
-                const selectedAge =
-                    card.dataset.ageFilter;
+            syncAgeUI();
+            updatePlayers();
+            scrollToPlayers();
 
-
-                activeAge =
-                    selectedAge;
-
-
-                ageButtons.forEach(button => {
-
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.age === selectedAge
-                    );
-
-                });
-
-
-                ageCards.forEach(item => {
-
-                    item.classList.toggle(
-                        "active",
-                        item === card
-                    );
-
-                });
-
-
-                updatePlayers();
-
-
-                const playersSection =
-                    document.getElementById(
-                        "players"
-                    );
-
-
-                if (playersSection) {
-
-                    setTimeout(() => {
-
-                        playersSection.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-
-                    }, 100);
-
-                }
-
-            }
-        );
-
+        });
     });
+
 
     /* ---------- Deep Link From URL ---------- */
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const ageFromUrl = urlParams.get("age");
+    const ageFromUrl = new URLSearchParams(window.location.search).get("age");
 
     if (ageFromUrl) {
 
@@ -399,12 +180,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (matchingButton) {
-
             matchingButton.click();
-
         }
 
     }
+
+
     /* ---------- Initial State ---------- */
 
     updatePlayers();
