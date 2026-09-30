@@ -1,8 +1,16 @@
-/* =========================================
-   NEWS DATA
-========================================= */
-
 const news = [
+
+    {
+        title: "زمان تخمینی راه اندازی",
+        date: "15 مهر 1405",
+        text: "تقریبا تا پانزدهم مهرماه سایت در دسترس است و سوت آغاز به صدا در می آید",
+    },
+
+    {
+        title: "آپدیت 1.6 سایت",
+        date: "8 مهر 1405",
+        text: "نزدیک شدن به نسخه 2.0 و عرضه نهایی وبسایت؛ تغییرات: کدنویسی پس زمینه اسکن لاین برای تمامی صفحات",
+    },
 
     {
         title: "آپدیت 1.5 سایت",
@@ -38,27 +46,16 @@ const news = [
 ];
 
 
-/* =========================================
-   SETTINGS
-========================================= */
-
 const NEWS_PER_PAGE = 6;
 
 let currentPage = 1;
 
-
-/* =========================================
-   ELEMENTS
-========================================= */
 
 const newsList = document.getElementById('newsList');
 const pagination = document.getElementById('pagination');
 const newsEmpty = document.getElementById('newsEmpty');
 
 
-/* =========================================
-   DATE PARSER
-========================================= */
 
 function parsePersianDate(dateString) {
 
@@ -78,10 +75,6 @@ function parsePersianDate(dateString) {
 
 }
 
-
-/* =========================================
-   RENDER NEWS
-========================================= */
 
 function renderNews() {
 
@@ -162,10 +155,6 @@ function renderNews() {
 }
 
 
-/* =========================================
-   PAGINATION
-========================================= */
-
 function renderPagination() {
 
     pagination.innerHTML = '';
@@ -179,7 +168,7 @@ function renderPagination() {
     }
 
 
-    /* Previous */
+
 
     if (currentPage > 1) {
 
@@ -194,8 +183,6 @@ function renderPagination() {
 
     }
 
-
-    /* Page Numbers */
 
     for (
         let page = 1;
@@ -232,9 +219,6 @@ function renderPagination() {
 }
 
 
-/* =========================================
-   CREATE PAGINATION BUTTON
-========================================= */
 
 function createPaginationButton(
     text,
@@ -292,10 +276,6 @@ function createPaginationButton(
 }
 
 
-/* =========================================
-   HEADER SCROLL
-========================================= */
-
 const header =
     document.querySelector('.site-header');
 
@@ -322,9 +302,6 @@ window.addEventListener(
 handleHeaderScroll();
 
 
-/* =========================================
-   MOBILE MENU
-========================================= */
 
 const menuBtn =
     document.getElementById('menuBtn');
@@ -374,10 +351,5 @@ if (menuBtn && mainMenu) {
         });
 
 }
-
-
-/* =========================================
-   INITIALIZE
-========================================= */
 
 renderNews();
