@@ -1,5 +1,21 @@
 const galleryItems = [
     {
+        image: "images/gallery/lebas1.webp",
+        title: "لباس جدید طرح سفید",
+        description: "لباس های جدید مسابقات رویای افلاک",
+        date: "8 مهر 1405",
+        category: "matches",    // training | matches | teams | events
+        alt: ""
+    },
+    {
+        image: "images/gallery/lebas2.webp",
+        title: "لباس جدید طرح لیمویی",
+        description: "لباس های جدید مسابقات رویای افلاک",
+        date: "8 مهر 1405",
+        category: "matches",    // training |  | teams | events
+        alt: ""
+    },
+    {
         image: "images/gallery/coach1035.webp",
         title: "بابک مدنی در سال 1394",
         description: "تصویری از مربی رویای افلاک، بابک مدنی، در حین تمرین",
