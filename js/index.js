@@ -284,3 +284,157 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
     });
 
 });
+
+
+
+/* =========================================
+   HERO SLIDER
+========================================= */
+
+const heroSection = document.getElementById("home");
+const heroSlider = document.getElementById("heroSlider");
+const heroTrack = document.getElementById("heroSlides");
+const heroDotsBox = document.getElementById("heroDots");
+
+if (heroSection && heroSlider && heroTrack) {
+
+    const slides = heroTrack.children;
+    const total = slides.length;
+    const AUTO_DELAY = 5000;
+    const SWIPE_THRESHOLD = 60;
+
+    let current = 0;
+    let timer = null;
+    let startX = 0;
+    let deltaX = 0;
+    let dragging = false;
+
+    /* Build dots */
+
+    const dots = [];
+
+    if (heroDotsBox && total > 1) {
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "hero-dot";
+            dot.setAttribute("aria-label", "اسلاید " + (i + 1));
+            dot.addEventListener("click", () => {
+                goTo(i);
+                restartAuto();
+            });
+            heroDotsBox.appendChild(dot);
+            dots.push(dot);
+        }
+    }
+
+    function render() {
+        heroTrack.style.transform = "translateX(" + (-current * 100) + "%)";
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === current);
+        });
+    }
+
+    function goTo(index) {
+        current = (index + total) % total;
+        render();
+    }
+
+    function startAuto() {
+        if (total < 2) return;
+        stopAuto();
+        timer = setInterval(() => goTo(current + 1), AUTO_DELAY);
+    }
+
+    function stopAuto() {
+        clearInterval(timer);
+    }
+
+    function restartAuto() {
+        stopAuto();
+        startAuto();
+    }
+
+    /* Drag / swipe */
+
+    function onDown(x) {
+        dragging = true;
+        startX = x;
+        deltaX = 0;
+        heroTrack.classList.add("no-transition");
+        heroSlider.classList.add("dragging");
+        stopAuto();
+    }
+
+    function onMove(x) {
+        if (!dragging) return;
+        deltaX = x - startX;
+        const percent = (deltaX / heroSection.offsetWidth) * 100;
+        heroTrack.style.transform =
+            "translateX(" + (-current * 100 + percent) + "%)";
+    }
+
+    function onUp() {
+        if (!dragging) return;
+        dragging = false;
+        heroTrack.classList.remove("no-transition");
+        heroSlider.classList.remove("dragging");
+
+        if (deltaX <= -SWIPE_THRESHOLD) {
+            goTo(current + 1);
+        } else if (deltaX >= SWIPE_THRESHOLD) {
+            goTo(current - 1);
+        } else {
+            render();
+        }
+
+        deltaX = 0;
+        startAuto();
+    }
+
+    /* Touch */
+
+    heroSection.addEventListener("touchstart", e => {
+        onDown(e.touches[0].clientX);
+    }, { passive: true });
+
+    heroSection.addEventListener("touchmove", e => {
+        onMove(e.touches[0].clientX);
+    }, { passive: true });
+
+    heroSection.addEventListener("touchend", onUp);
+    heroSection.addEventListener("touchcancel", onUp);
+
+    /* Mouse */
+
+    heroSection.addEventListener("mousedown", e => {
+        if (e.target.closest("a, button")) return;
+        e.preventDefault();
+        onDown(e.clientX);
+    });
+
+    window.addEventListener("mousemove", e => onMove(e.clientX));
+    window.addEventListener("mouseup", onUp);
+
+    /* Pause when tab is hidden */
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAuto();
+        } else {
+            startAuto();
+        }
+    });
+
+    /* Respect reduced motion: no autoplay */
+
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    render();
+
+    if (!reduceMotion) {
+        startAuto();
+    }
+}
