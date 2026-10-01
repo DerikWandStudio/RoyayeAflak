@@ -1477,6 +1477,7 @@ ul {
 
     display: grid;
     place-items: center;
+    overflow: hidden;
 
     background:
         radial-gradient(circle at center,
@@ -2204,6 +2205,7 @@ button:focus-visible {
         font-size: 14px;
     }
 }
+
 /* =========================================
    Heartbeat
 ========================================= */

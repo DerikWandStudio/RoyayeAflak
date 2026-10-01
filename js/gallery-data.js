@@ -15,7 +15,7 @@ const galleryItems = [
         category: "matches",    // training |  | teams | events
         alt: ""
     },
-    
+
     {
         image: "images/gallery/coach1035.webp",
         title: "بابک مدنی در سال 1394",
