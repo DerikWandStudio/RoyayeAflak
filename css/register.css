@@ -21,15 +21,15 @@ body {
         linear-gradient(90deg,
             rgba(7, 17, 13, 0.35),
             #07110d 85%),
-        url("../images/teams/teams-hero.webp") center / cover;
+        url("../images/hero/hero04.webp") center / cover;
+
 }
 
 .register-hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(to top,
+    background: linear-gradient(to top,
             #07110d,
             transparent 35%);
     pointer-events: none;
@@ -98,8 +98,7 @@ body {
     padding: 42px;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 26px;
-    background:
-        linear-gradient(145deg,
+    background: linear-gradient(145deg,
             rgba(16, 30, 22, 0.96),
             rgba(10, 21, 16, 0.96));
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
@@ -459,8 +458,7 @@ body {
     padding: 28px;
     border: 1px solid rgba(182, 255, 84, 0.13);
     border-radius: 22px;
-    background:
-        radial-gradient(circle at top right,
+    background: radial-gradient(circle at top right,
             rgba(182, 255, 84, 0.08),
             transparent 55%),
         #0a1510;
@@ -508,8 +506,7 @@ body {
     text-align: center;
     border: 1px solid rgba(182, 255, 84, 0.14);
     border-radius: 30px;
-    background:
-        radial-gradient(circle at center,
+    background: radial-gradient(circle at center,
             rgba(182, 255, 84, 0.09),
             transparent 55%),
         #07110d;

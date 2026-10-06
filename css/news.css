@@ -91,6 +91,7 @@ ul {
     left: 0;
 
     z-index: 1000;
+
 }
 
 .site-header.scrolled {
@@ -355,6 +356,12 @@ ul {
     border-bottom: 1px solid var(--border);
 
     overflow: hidden;
+
+    background:
+        linear-gradient(120deg,
+            rgba(7, 17, 13, 0.70),
+            rgba(7, 17, 13, 0.560)),
+        url("../images/hero/hero07.webp") center / cover no-repeat;
 }
 
 .page-hero::before {

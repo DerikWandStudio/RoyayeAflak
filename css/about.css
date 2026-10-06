@@ -19,7 +19,7 @@
         linear-gradient(120deg,
             rgba(7, 17, 13, 0.70),
             rgba(7, 17, 13, 0.560)),
-        url("../images/about/academy.jpg") center / cover no-repeat;
+        url("../images/hero/hero05.webp") center / cover no-repeat;
 }
 
 .about-hero::before {

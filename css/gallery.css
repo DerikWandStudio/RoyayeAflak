@@ -12,6 +12,7 @@
 
 .hero.page-hero {
     min-height: 460px;
+    min-height: 60vh;
 }
 
 .hero.page-hero .hero-content {
@@ -25,10 +26,17 @@
     margin-bottom: 18px;
 }
 
-.hero.page-hero .hero-content > p {
+.hero.page-hero .hero-content>p {
     margin-bottom: 0;
 }
 
+.hero {
+    background:
+        linear-gradient(180deg,
+            rgba(7, 17, 13, 0.1),
+            rgba(7, 17, 13, 0.2)),
+        url("../images/hero/hero08.webp") center / cover no-repeat;
+}
 
 /* =========================================================
    FILTERS
@@ -402,7 +410,7 @@ body.lightbox-open {
     z-index: 2;
 
     width: min(1050px, 95vw);
-    max-height: 90vh;
+    max-height: 100vh;
 
     display: grid;
 

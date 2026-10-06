@@ -20,6 +20,11 @@
             rgba(182, 255, 84, 0.06),
             transparent 30%),
         var(--bg-main);
+    background:
+        linear-gradient(120deg,
+            rgba(7, 17, 13, 0.70),
+            rgba(7, 17, 13, 0.560)),
+        url("../images/hero/hero02.webp") center / cover no-repeat;
 }
 
 .contact-hero::before {

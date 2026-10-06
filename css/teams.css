@@ -21,6 +21,11 @@
             rgba(182, 255, 84, 0.06),
             transparent 30%),
         var(--bg-main);
+    background:
+        linear-gradient(120deg,
+            rgba(7, 17, 13, 0.70),
+            rgba(7, 17, 13, 0.560)),
+        url("../images/about/academy.jpg") center / cover no-repeat;
 }
 
 .teams-hero::before {
