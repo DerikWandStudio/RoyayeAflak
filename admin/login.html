@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ورود مدیران | رویای افلاک</title>
+
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="login.js" defer></script>
+</head>
+
+<body>
+    <main class="login-container">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark">RA</span>
+            <span>رویای افلاک</span>
+        </a>
+
+        <section class="login-card">
+            <div class="card-heading">
+                <span class="eyebrow">ADMINISTRATION</span>
+                <h1>خوش برگشتی!</h1>
+                <p>برای ورود به پنل مدیریت، اطلاعات حسابت را وارد کن.</p>
+            </div>
+
+            <form id="login-form">
+                <label for="email">ایمیل مدیر</label>
+                <input id="email" name="email" type="email" autocomplete="username" placeholder="ایمیل حساب مدیر"
+                    required>
+
+                <label for="password">رمز عبور</label>
+                <div class="password-field">
+                    <input id="password" name="password" type="password" autocomplete="current-password"
+                        placeholder="رمز عبور" required>
+                    <button type="button" id="toggle-password" aria-label="نمایش رمز عبور">نمایش</button>
+                </div>
+
+                <p id="login-message" role="status" aria-live="polite"></p>
+
+                <button type="submit" id="login-button">
+                    ورود به پنل مدیریت
+                </button>
+            </form>
+
+            <p class="security-note">
+                <span aria-hidden="true">●</span>
+                ورود فقط برای مدیران مجاز
+            </p>
+        </section>
+
+        <footer>
+            رویای افلاک · پنل مدیریت
+        </footer>
+    </main>
+</body>
+
+</html>
