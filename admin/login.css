@@ -91,7 +91,8 @@ form label {
     font-weight: 600;
 }
 
-form input {
+/* Plain inputs only (the password input is styled separately below) */
+form>input {
     width: 100%;
     min-width: 0;
     padding: 13px 14px;
@@ -103,48 +104,46 @@ form input {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-form input:focus {
+form>input:focus {
     border-color: #b6ff54;
     box-shadow: 0 0 0 3px #b6ff5418;
 }
 
-form input::placeholder {
+input::placeholder {
     color: #718277;
 }
 
-
+/* Password field: wrapper draws the border, input and button sit inside */
 .password-field {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0 10px 0 4px;
+    padding: 0 6px;
     border: 1px solid #304537;
     border-radius: 11px;
     background: #101e15;
-    direction: rtl;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-field:focus-within {
+    border-color: #b6ff54;
+    box-shadow: 0 0 0 3px #b6ff5418;
 }
 
 .password-field input {
-    flex: 1;
-    width: 0;
+    flex: 1 1 auto;
     min-width: 0;
-    padding: 13px 10px;
+    padding: 13px 8px;
     border: none;
     outline: none;
     background: transparent;
     color: #f3f7f3;
-    box-shadow: none;
-}
-
-.password-field input:focus {
-    border: none;
-    box-shadow: none;
 }
 
 #toggle-password {
-    flex-shrink: 0;
-    min-width: 55px;
-    padding: 8px 5px;
+    flex: 0 0 auto;
+    min-width: 76px;
+    padding: 8px 10px;
     border: none;
     border-radius: 7px;
     background: transparent;
@@ -158,6 +157,10 @@ form input::placeholder {
     background: #b6ff5415;
 }
 
+#toggle-password:focus-visible {
+    outline: 2px solid #b6ff54;
+    outline-offset: 2px;
+}
 
 #login-message {
     display: none;

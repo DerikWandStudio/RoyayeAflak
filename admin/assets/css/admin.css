@@ -1,0 +1,180 @@
+:root {
+    color-scheme: dark;
+    font-family: "Vazirmatn", sans-serif;
+    --bg: #07110d;
+    --surface: #0d1912;
+    --surface-2: #101e15;
+    --border: #263b2d;
+    --accent: #b6ff54;
+    --text: #f3f7f3;
+    --muted: #a4b4a8;
+    --danger: #ff9292;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, #183421 0%, transparent 55%), var(--bg);
+    color: var(--text);
+}
+
+button {
+    font: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px clamp(16px, 4vw, 40px);
+    border-bottom: 1px solid var(--border);
+    background: rgba(13, 25, 18, 0.9);
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.admin-brand-mark {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 13px;
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.admin-user-email {
+    direction: ltr;
+    unicode-bidi: plaintext;
+}
+
+.btn {
+    padding: 9px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-2);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.btn:hover {
+    border-color: var(--accent);
+}
+
+.btn-primary {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 800;
+}
+
+.admin-main {
+    width: min(100% - 32px, 1000px);
+    margin: 0 auto;
+    padding: 32px 0 48px;
+}
+
+.admin-main h1 {
+    margin: 0 0 6px;
+    font-size: 24px;
+}
+
+.admin-lead {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status-box {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.status-box.error {
+    border-color: #5a2b2b;
+    color: var(--danger);
+}
+
+.status-box .btn {
+    margin-top: 10px;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.quick-link {
+    display: block;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+}
+
+.quick-link strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+.quick-link span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.quick-link.is-disabled {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}

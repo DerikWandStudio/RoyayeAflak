@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>داشبورد | پنل مدیریت رویای افلاک</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabase-client.js" defer></script>
+    <script src="assets/js/auth.js" defer></script>
+    <script src="assets/js/dashboard.js" defer></script>
+</head>
+
+<body>
+    <header class="admin-header">
+        <a class="admin-brand" href="index.html">
+            <span class="admin-brand-mark">RA</span>
+            <span>پنل مدیریت رویای افلاک</span>
+        </a>
+
+        <div class="admin-user" id="admin-user" hidden>
+            <span class="admin-user-email" id="admin-email"></span>
+            <button type="button" class="btn" id="logout-button">خروج از حساب</button>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <h1>داشبورد</h1>
+        <p class="admin-lead">مدیریت محتوای وب‌سایت آکادمی از همین‌جا انجام می‌شود.</p>
+
+        <div class="status-box" id="status-box" role="status" aria-live="polite">
+            در حال بررسی دسترسی...
+        </div>
+
+        <nav class="quick-links" id="quick-links" aria-label="دسترسی سریع" hidden>
+            <a class="quick-link is-disabled" href="news.html" aria-disabled="true">
+                <strong>اخبار</strong>
+                <span>به‌زودی</span>
+            </a>
+            <a class="quick-link is-disabled" href="gallery.html" aria-disabled="true">
+                <strong>گالری</strong>
+                <span>به‌زودی</span>
+            </a>
+            <a class="quick-link is-disabled" href="players.html" aria-disabled="true">
+                <strong>بازیکنان</strong>
+                <span>به‌زودی</span>
+            </a>
+        </nav>
+    </main>
+</body>
+
+</html>

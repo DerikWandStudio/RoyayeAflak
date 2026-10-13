@@ -7,11 +7,11 @@
     <meta name="robots" content="noindex, nofollow">
     <title>ورود مدیران | رویای افلاک</title>
 
-    <link rel="stylesheet" href="login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="login.js" defer></script>
@@ -31,7 +31,7 @@
                 <p>برای ورود به پنل مدیریت، اطلاعات حسابت را وارد کن.</p>
             </div>
 
-            <form id="login-form">
+            <form id="login-form" novalidate>
                 <label for="email">ایمیل مدیر</label>
                 <input id="email" name="email" type="email" autocomplete="username" placeholder="ایمیل حساب مدیر"
                     required>
@@ -40,14 +40,13 @@
                 <div class="password-field">
                     <input id="password" name="password" type="password" autocomplete="current-password"
                         placeholder="رمز عبور" required>
-                    <button type="button" id="toggle-password" aria-label="نمایش رمز عبور">نمایش</button>
+                    <button type="button" id="toggle-password" aria-label="نمایش رمز عبور"
+                        aria-pressed="false">نمایش</button>
                 </div>
 
                 <p id="login-message" role="status" aria-live="polite"></p>
 
-                <button type="submit" id="login-button">
-                    ورود به پنل مدیریت
-                </button>
+                <button type="submit" id="login-button">ورود به پنل مدیریت</button>
             </form>
 
             <p class="security-note">
@@ -56,9 +55,7 @@
             </p>
         </section>
 
-        <footer>
-            رویای افلاک · پنل مدیریت
-        </footer>
+        <footer>رویای افلاک · پنل مدیریت</footer>
     </main>
 </body>
 
