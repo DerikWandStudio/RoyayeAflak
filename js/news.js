@@ -18,33 +18,51 @@
         { title: 'ویرایش و دیباگ', date: '۲ مهر ۱۴۰۵', text: 'پس زمینه آیکون عوض شد، فوتر در تمام بخش های سایت ویرایش شد، نسخه 1.2 آپلود شد' },
         { title: 'اضافه شدن بخش اخبار', date: '۲۲ شهریور ۱۴۰۵', text: 'ثبت‌نام بازیکنان در رده‌های سنی مختلف برای فصل جدید آغاز شد.' }
     ];
+
     function parsePersianDate(value) {
-        const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || '').trim());
+        const months = [
+            'فروردین', 'اردیبهشت', 'خرداد', 'تیر',
+            'مرداد', 'شهریور', 'مهر', 'آبان',
+            'آذر', 'دی', 'بهمن', 'اسفند'
+        ];
+
+        const raw = String(value || '').trim();
+        const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
 
         if (match) {
-            const months = [
-                'فروردین', 'اردیبهشت', 'خرداد', 'تیر',
-                'مرداد', 'شهریور', 'مهر', 'آبان',
-                'آذر', 'دی', 'بهمن', 'اسفند'
-            ];
-
             return {
                 day: new Intl.NumberFormat('fa-IR').format(Number(match[3])),
-                month: months[Number(match[2]) - 1] || ''
+                month: months[Number(match[2]) - 1] || '',
+                year: new Intl.NumberFormat('fa-IR').format(Number(match[1]))
             };
         }
 
-        const parts = String(value || '').trim().split(/\s+/);
+        // پشتیبانی از تاریخ‌های متنی قدیمی
+        const parts = raw.split(/\s+/);
 
-        if (parts.length < 2) {
-            return { day: String(value || '—'), month: '' };
+        if (parts.length >= 3) {
+            return {
+                day: parts[0],
+                month: parts[1],
+                year: parts.slice(2).join(' ')
+            };
+        }
+
+        if (parts.length >= 2) {
+            return {
+                day: parts[0],
+                month: parts.slice(1).join(' '),
+                year: ''
+            };
         }
 
         return {
-            day: parts[0],
-            month: parts.slice(1).join(' ')
+            day: raw || '—',
+            month: '',
+            year: ''
         };
     }
+
     function renderNews() {
         newsList.innerHTML = '';
         if (!news.length) { newsEmpty.classList.add('visible'); pagination.innerHTML = ''; return; }
