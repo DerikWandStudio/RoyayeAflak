@@ -112,34 +112,52 @@ form input::placeholder {
     color: #718277;
 }
 
+
 .password-field {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding-left: 10px;
+    padding: 0 10px 0 4px;
     border: 1px solid #304537;
     border-radius: 11px;
     background: #101e15;
+    direction: rtl;
 }
 
 .password-field input {
-    border: 0;
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    padding: 13px 10px;
+    border: none;
+    outline: none;
     background: transparent;
+    color: #f3f7f3;
     box-shadow: none;
 }
 
-.password-field:focus-within {
-    border-color: #b6ff54;
+.password-field input:focus {
+    border: none;
+    box-shadow: none;
 }
 
 #toggle-password {
-    padding: 8px;
-    border: 0;
+    flex-shrink: 0;
+    min-width: 55px;
+    padding: 8px 5px;
+    border: none;
+    border-radius: 7px;
     background: transparent;
     color: #b6ff54;
     cursor: pointer;
     font-size: 12px;
+    white-space: nowrap;
 }
+
+#toggle-password:hover {
+    background: #b6ff5415;
+}
+
 
 #login-message {
     display: none;
