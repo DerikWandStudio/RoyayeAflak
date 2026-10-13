@@ -1,6 +1,90 @@
 (() => {
   'use strict';
+  const newsDay = document.getElementById('newsDay');
+  const newsMonth = document.getElementById('newsMonth');
+  const newsYear = document.getElementById('newsYear');
 
+  const persianMonths = [
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند'
+  ];
+
+  function fillSelect(select, items, placeholder) {
+    select.replaceChildren();
+
+    const firstOption = document.createElement('option');
+    firstOption.value = '';
+    firstOption.textContent = placeholder;
+    select.appendChild(firstOption);
+
+    items.forEach(item => {
+      const option = document.createElement('option');
+
+      option.value = String(item.value);
+      option.textContent = item.label;
+
+      select.appendChild(option);
+    });
+  }
+
+  function updateNewsDays() {
+    const month = Number(newsMonth.value);
+
+    let days = 31;
+
+    if (month >= 7 && month <= 11) {
+      days = 30;
+    } else if (month === 12) {
+      days = 29;
+    }
+
+    const previousDay = newsDay.value;
+
+    fillSelect(
+      newsDay,
+      Array.from({ length: days }, (_, index) => ({
+        value: index + 1,
+        label: new Intl.NumberFormat('fa-IR').format(index + 1)
+      })),
+      'روز'
+    );
+
+    if (Number(previousDay) > 0 && Number(previousDay) <= days) {
+      newsDay.value = previousDay;
+    }
+  }
+
+  fillSelect(
+    newsMonth,
+    persianMonths.map((month, index) => ({
+      value: index + 1,
+      label: month
+    })),
+    'ماه'
+  );
+
+  fillSelect(
+    newsYear,
+    Array.from({ length: 11 }, (_, index) => ({
+      value: 1400 + index,
+      label: new Intl.NumberFormat('fa-IR').format(1400 + index)
+    })).reverse(),
+    'سال'
+  );
+
+  updateNewsDays();
+
+  newsMonth.addEventListener('change', updateNewsDays);
   const $ = (id) => document.getElementById(id);
   const form = $('newsForm');
   const notice = $('notice');
@@ -47,10 +131,10 @@
 
   function makeSlug(value) {
     const transliteration = {
-      'ا':'a','آ':'a','أ':'a','إ':'e','ب':'b','پ':'p','ت':'t','ث':'s','ج':'j','چ':'ch','ح':'h','خ':'kh',
-      'د':'d','ذ':'z','ر':'r','ز':'z','ژ':'zh','س':'s','ش':'sh','ص':'s','ض':'z','ط':'t','ظ':'z','ع':'a',
-      'غ':'gh','ف':'f','ق':'gh','ک':'k','ك':'k','گ':'g','ل':'l','م':'m','ن':'n','و':'v','ؤ':'o','ه':'h',
-      'ة':'h','ی':'y','ي':'y','ئ':'y','ء':'',' ': '-'
+      'ا': 'a', 'آ': 'a', 'أ': 'a', 'إ': 'e', 'ب': 'b', 'پ': 'p', 'ت': 't', 'ث': 's', 'ج': 'j', 'چ': 'ch', 'ح': 'h', 'خ': 'kh',
+      'د': 'd', 'ذ': 'z', 'ر': 'r', 'ز': 'z', 'ژ': 'zh', 'س': 's', 'ش': 'sh', 'ص': 's', 'ض': 'z', 'ط': 't', 'ظ': 'z', 'ع': 'a',
+      'غ': 'gh', 'ف': 'f', 'ق': 'gh', 'ک': 'k', 'ك': 'k', 'گ': 'g', 'ل': 'l', 'م': 'm', 'ن': 'n', 'و': 'v', 'ؤ': 'o', 'ه': 'h',
+      'ة': 'h', 'ی': 'y', 'ي': 'y', 'ئ': 'y', 'ء': '', ' ': '-'
     };
     let output = '';
     for (const char of value.trim().toLowerCase()) {
