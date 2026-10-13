@@ -11,6 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <link href="assets/css/admin.css" rel="stylesheet">
   <link href="assets/css/news.css" rel="stylesheet">
+  <style>.date-selects{display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:10px}.date-part-label{display:block;color:var(--news-muted);font-size:11px;margin-bottom:6px}@media(max-width:500px){.date-selects{gap:6px}}</style>
 </head>
 <body class="admin-body">
   <div class="admin-shell">
@@ -36,7 +37,7 @@
       <section class="news-stats" aria-label="آمار خبرها">
         <article class="news-stat"><span>همهٔ خبرها</span><strong id="totalCount">—</strong></article>
         <article class="news-stat"><span>منتشرشده</span><strong id="publishedCount">—</strong></article>
-        <article class="news-stat"><span>پیش‌نویس</span><strong id="draftCount">—</strong></article>
+        <article class="news-stat"><span>پیش‌نویس‌های قدیمی</span><strong id="draftCount">—</strong></article>
       </section>
 
       <section class="news-workspace">
@@ -48,15 +49,13 @@
         </div>
 
         <section class="news-editor-panel" aria-labelledby="editorHeading">
-          <div class="panel-heading"><div><h2 id="editorHeading">ساخت خبر</h2><p>عنوان، متن و لینک تصویر را وارد کن.</p></div><span id="editorMode" class="mode-pill">خبر جدید</span></div>
+          <div class="panel-heading"><div><h2 id="editorHeading">ساخت خبر</h2><p>سرتیتر، تاریخ شمسی و متن خبر را وارد کن.</p></div><span id="editorMode" class="mode-pill">خبر جدید</span></div>
           <form id="newsForm" novalidate>
             <input id="newsId" type="hidden">
-            <div class="mb-3"><label for="newsTitle" class="form-label">عنوان خبر <span class="required-mark">*</span></label><input id="newsTitle" class="form-control" type="text" maxlength="180" required placeholder="مثلاً قهرمانی تیم زیر ۱۵ سال"><div class="field-hint">حداکثر ۱۸۰ نویسه</div></div>
-            <div class="mb-3"><label for="newsSlug" class="form-label">آدرس کوتاه خبر <span class="required-mark">*</span></label><input id="newsSlug" class="form-control" type="text" maxlength="180" required dir="ltr" placeholder="u15-championship"><div class="field-hint">فقط حروف انگلیسی کوچک، عدد و خط تیره؛ خودکار از عنوان ساخته می‌شود و قابل ویرایش است.</div></div>
-            <div class="mb-3"><label for="newsExcerpt" class="form-label">خلاصهٔ خبر</label><textarea id="newsExcerpt" class="form-control" rows="2" maxlength="400" placeholder="یک خلاصهٔ کوتاه برای کارت خبر"></textarea><div class="field-hint"><span id="excerptCount">۰</span>/۴۰۰</div></div>
-            <div class="mb-3"><label for="newsBody" class="form-label">متن خبر <span class="required-mark">*</span></label><textarea id="newsBody" class="form-control body-input" rows="8" required placeholder="متن کامل خبر را بنویس…"></textarea><div class="field-hint">هر خط جدید در متن خبر حفظ می‌شود.</div></div>
-            <div class="mb-3"><label for="newsImage" class="form-label">لینک مستقیم تصویر</label><input id="newsImage" class="form-control" type="url" maxlength="2048" dir="ltr" placeholder="https://royayeaflak.ir/images/news/example.webp"><div class="field-hint">عکس باید از قبل در یک آدرس عمومی قابل‌دسترسی باشد. در این نسخه، تصویر آپلود نمی‌شود.</div><div id="imagePreviewWrap" class="image-preview-wrap" hidden><img id="imagePreview" alt="پیش‌نمایش تصویر خبر"><button id="clearImageButton" class="btn btn-sm btn-outline-secondary" type="button">پاک کردن لینک</button></div></div>
-            <div class="publish-choice"><div><strong>وضعیت خبر</strong><p>پیش‌نویس در سایت عمومی نمایش داده نمی‌شود.</p></div><select id="newsStatus" class="form-select"><option value="draft">پیش‌نویس</option><option value="published">انتشار خبر</option></select></div>
+            <div class="mb-3"><label for="newsTitle" class="form-label">سرتیتر <span class="required-mark">*</span></label><input id="newsTitle" class="form-control" type="text" maxlength="180" required placeholder="سرتیتر خبر را وارد کن"></div>
+            <div class="mb-3"><label class="form-label">تاریخ شمسی <span class="required-mark">*</span></label><div class="date-selects"><div><label for="newsDay" class="date-part-label">روز</label><select id="newsDay" class="form-select" required></select></div><div><label for="newsMonth" class="date-part-label">ماه</label><select id="newsMonth" class="form-select" required></select></div><div><label for="newsYear" class="date-part-label">سال</label><select id="newsYear" class="form-select" required></select></div></div></div>
+            <div class="mb-3"><label for="newsBody" class="form-label">متن <span class="required-mark">*</span></label><textarea id="newsBody" class="form-control body-input" rows="8" required placeholder="متن خبر را بنویس…"></textarea><div class="field-hint">متن خبر در صفحهٔ عمومی نمایش داده می‌شود.</div></div>
+            <div class="publish-choice"><div><strong>وضعیت خبر</strong><p>با ذخیره، خبر منتشر و در صفحهٔ اخبار نمایش داده می‌شود.</p></div><span class="status-badge published">انتشار</span></div>
             <div class="editor-actions"><button id="saveButton" class="btn btn-accent" type="submit">ذخیرهٔ خبر</button><button id="resetButton" class="btn btn-outline-secondary" type="button">پاک کردن فرم</button><button id="deleteButton" class="btn btn-outline-danger me-auto" type="button" hidden>حذف خبر</button></div>
             <p class="save-hint">با ذخیره، تغییرات در دیتابیس Supabase ثبت می‌شوند.</p>
           </form>
