@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>مدیریت اخبار | پنل رویای افلاک</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="assets/css/admin.css" rel="stylesheet">
+  <link href="assets/css/news.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="index.html"><span class="brand-mark">RA</span><span><strong>رویای افلاک</strong><small>پنل مدیریت</small></span></a>
+      <nav class="admin-nav" aria-label="منوی مدیریت">
+        <a href="index.html"><span>▦</span> داشبورد</a>
+        <a class="active" href="news.html"><span>▤</span> مدیریت اخبار</a>
+        <a class="is-disabled" href="#" aria-disabled="true"><span>▧</span> گالری <small>به‌زودی</small></a>
+        <a class="is-disabled" href="#" aria-disabled="true"><span>♙</span> بازیکنان <small>به‌زودی</small></a>
+      </nav>
+      <div class="sidebar-bottom"><span class="connection-dot"></span><span>پنل مدیریت</span><button id="logoutButton" class="logout-button" type="button">خروج</button></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="news-topbar">
+        <div><p class="eyebrow">CONTENT MANAGEMENT</p><h1>مدیریت اخبار</h1><p class="page-subtitle">خبرها را بنویس، پیش‌نویس نگه دار یا منتشر کن.</p></div>
+        <button id="newNewsButton" class="btn btn-accent" type="button">＋ خبر جدید</button>
+      </header>
+
+      <div id="notice" class="news-notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="news-stats" aria-label="آمار خبرها">
+        <article class="news-stat"><span>همهٔ خبرها</span><strong id="totalCount">—</strong></article>
+        <article class="news-stat"><span>منتشرشده</span><strong id="publishedCount">—</strong></article>
+        <article class="news-stat"><span>پیش‌نویس</span><strong id="draftCount">—</strong></article>
+      </section>
+
+      <section class="news-workspace">
+        <div class="news-list-panel">
+          <div class="panel-heading"><div><h2>خبرها</h2><p>برای ویرایش، یک خبر را انتخاب کن.</p></div>
+            <label class="filter-wrap"><span class="visually-hidden">فیلتر وضعیت خبر</span><select id="statusFilter" class="form-select form-select-sm"><option value="all">همهٔ وضعیت‌ها</option><option value="published">منتشرشده</option><option value="draft">پیش‌نویس</option></select></label>
+          </div>
+          <div id="newsList" class="news-list"><div class="empty-state">در حال دریافت خبرها…</div></div>
+        </div>
+
+        <section class="news-editor-panel" aria-labelledby="editorHeading">
+          <div class="panel-heading"><div><h2 id="editorHeading">ساخت خبر</h2><p>عنوان، متن و لینک تصویر را وارد کن.</p></div><span id="editorMode" class="mode-pill">خبر جدید</span></div>
+          <form id="newsForm" novalidate>
+            <input id="newsId" type="hidden">
+            <div class="mb-3"><label for="newsTitle" class="form-label">عنوان خبر <span class="required-mark">*</span></label><input id="newsTitle" class="form-control" type="text" maxlength="180" required placeholder="مثلاً قهرمانی تیم زیر ۱۵ سال"><div class="field-hint">حداکثر ۱۸۰ نویسه</div></div>
+            <div class="mb-3"><label for="newsSlug" class="form-label">آدرس کوتاه خبر <span class="required-mark">*</span></label><input id="newsSlug" class="form-control" type="text" maxlength="180" required dir="ltr" placeholder="u15-championship"><div class="field-hint">فقط حروف انگلیسی کوچک، عدد و خط تیره؛ خودکار از عنوان ساخته می‌شود و قابل ویرایش است.</div></div>
+            <div class="mb-3"><label for="newsExcerpt" class="form-label">خلاصهٔ خبر</label><textarea id="newsExcerpt" class="form-control" rows="2" maxlength="400" placeholder="یک خلاصهٔ کوتاه برای کارت خبر"></textarea><div class="field-hint"><span id="excerptCount">۰</span>/۴۰۰</div></div>
+            <div class="mb-3"><label for="newsBody" class="form-label">متن خبر <span class="required-mark">*</span></label><textarea id="newsBody" class="form-control body-input" rows="8" required placeholder="متن کامل خبر را بنویس…"></textarea><div class="field-hint">هر خط جدید در متن خبر حفظ می‌شود.</div></div>
+            <div class="mb-3"><label for="newsImage" class="form-label">لینک مستقیم تصویر</label><input id="newsImage" class="form-control" type="url" maxlength="2048" dir="ltr" placeholder="https://royayeaflak.ir/images/news/example.webp"><div class="field-hint">عکس باید از قبل در یک آدرس عمومی قابل‌دسترسی باشد. در این نسخه، تصویر آپلود نمی‌شود.</div><div id="imagePreviewWrap" class="image-preview-wrap" hidden><img id="imagePreview" alt="پیش‌نمایش تصویر خبر"><button id="clearImageButton" class="btn btn-sm btn-outline-secondary" type="button">پاک کردن لینک</button></div></div>
+            <div class="publish-choice"><div><strong>وضعیت خبر</strong><p>پیش‌نویس در سایت عمومی نمایش داده نمی‌شود.</p></div><select id="newsStatus" class="form-select"><option value="draft">پیش‌نویس</option><option value="published">انتشار خبر</option></select></div>
+            <div class="editor-actions"><button id="saveButton" class="btn btn-accent" type="submit">ذخیرهٔ خبر</button><button id="resetButton" class="btn btn-outline-secondary" type="button">پاک کردن فرم</button><button id="deleteButton" class="btn btn-outline-danger me-auto" type="button" hidden>حذف خبر</button></div>
+            <p class="save-hint">با ذخیره، تغییرات در دیتابیس Supabase ثبت می‌شوند.</p>
+          </form>
+        </section>
+      </section>
+      <footer class="admin-footer">Royaye Aflak · News Management</footer>
+    </main>
+  </div>
+
+  <!-- Load Supabase JS before the shared project client. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/news.js"></script>
+</body>
+</html>
