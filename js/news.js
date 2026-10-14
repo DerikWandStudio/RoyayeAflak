@@ -70,7 +70,24 @@
         const current = news.slice((currentPage - 1) * NEWS_PER_PAGE, currentPage * NEWS_PER_PAGE);
         current.forEach((item, index) => {
             const date = parsePersianDate(item.date); const article = document.createElement('article'); article.className = 'news-item'; article.style.animationDelay = `${index * .05}s`;
-            const dateBox = document.createElement('div'); dateBox.className = 'news-date'; const day = document.createElement('span'); day.className = 'news-date-day'; day.textContent = date.day; const month = document.createElement('span'); month.className = 'news-date-month'; month.textContent = date.month; dateBox.append(day, month);
+
+            const dateBox = document.createElement('div');
+            dateBox.className = 'news-date';
+
+            const day = document.createElement('span');
+            day.className = 'news-date-day';
+            day.textContent = date.day;
+
+            const month = document.createElement('span');
+            month.className = 'news-date-month';
+            month.textContent = date.month;
+
+            const year = document.createElement('span');
+            year.className = 'news-date-year';
+            year.textContent = date.year || '';
+
+            dateBox.append(day, month, year);
+
             const content = document.createElement('div'); content.className = 'news-content'; const title = document.createElement('h3'); title.textContent = item.title || ''; const text = document.createElement('p'); text.textContent = item.text || ''; content.append(title, text); article.append(dateBox, content); newsList.appendChild(article);
         }); renderPagination();
     }
