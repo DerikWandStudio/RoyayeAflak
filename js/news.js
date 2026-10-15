@@ -64,6 +64,7 @@
     }
 
     function renderNews() {
+
         newsList.innerHTML = '';
         if (!news.length) { newsEmpty.classList.add('visible'); pagination.innerHTML = ''; return; }
         newsEmpty.classList.remove('visible');
@@ -84,7 +85,9 @@
 
             const year = document.createElement('span');
             year.className = 'news-date-year';
-            year.textContent = date.year || '';
+            year.textContent = String(date.year || '')
+                .replace(/,/g, '')
+                .replace(/\u066C/g, '');
 
             dateBox.append(day, month, year);
 
