@@ -43,7 +43,7 @@
       <nav class="admin-nav" aria-label="منوی مدیریت">
         <a href="index.html"><span>▦</span> داشبورد</a>
         <a class="active" href="news.html"><span>▤</span> مدیریت اخبار</a>
-        <a href="gallery.html"><span>▧</span> گالری</a>
+        <a href="gallery.html"><span>▧</span> مدیریت گالری</a>
         <a class="is-disabled" href="#" aria-disabled="true"><span>♙</span> بازیکنان <small>به‌زودی</small></a>
       </nav>
       <div class="sidebar-bottom"><span class="connection-dot"></span><span>پنل مدیریت</span><button id="logoutButton"
@@ -91,14 +91,14 @@
           <div class="panel-heading">
             <div>
               <h2 id="editorHeading">ساخت خبر</h2>
-              <p>سرتیتر، تاریخ شمسی و متن خبر را وارد کن.</p>
+              <p>سرتیتر، تاریخ شمسی و متن خبر را وارد کنید.</p>
             </div><span id="editorMode" class="mode-pill">خبر جدید</span>
           </div>
           <form id="newsForm" novalidate>
             <input id="newsId" type="hidden">
             <div class="mb-3"><label for="newsTitle" class="form-label">سرتیتر <span
                   class="required-mark">*</span></label><input id="newsTitle" class="form-control" type="text"
-                maxlength="180" required placeholder="سرتیتر خبر را وارد کن"></div>
+                maxlength="180" required placeholder="سرتیتر خبر را وارد کنید"></div>
             <div class="mb-3"><label class="form-label">تاریخ شمسی <span class="required-mark">*</span></label>
               <div class="date-selects">
                 <div><label for="newsDay" class="date-part-label">روز</label><select id="newsDay" class="form-select"
@@ -111,7 +111,7 @@
             </div>
             <div class="mb-3"><label for="newsBody" class="form-label">متن <span
                   class="required-mark">*</span></label><textarea id="newsBody" class="form-control body-input" rows="8"
-                required placeholder="متن خبر را بنویس…"></textarea>
+                required placeholder="متن خبر را بنویسید..."></textarea>
               <div class="field-hint">متن خبر در صفحهٔ عمومی نمایش داده می‌شود.</div>
             </div>
             <div class="publish-choice">
@@ -123,11 +123,10 @@
                 خبر</button><button id="resetButton" class="btn btn-outline-secondary" type="button">پاک کردن
                 فرم</button><button id="deleteButton" class="btn btn-outline-danger me-auto" type="button" hidden>حذف
                 خبر</button></div>
-            <p class="save-hint">با ذخیره، تغییرات در دیتابیس Supabase ثبت می‌شوند.</p>
           </form>
         </section>
       </section>
-      <footer class="admin-footer">Royaye Aflak · News Management</footer>
+      <footer class="admin-footer">مدیریت اخبار • رویای افلاک</footer>
     </main>
   </div>
 
