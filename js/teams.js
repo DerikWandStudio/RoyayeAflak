@@ -1,193 +1,235 @@
-/* =========================================
-   TEAMS PAGE JAVASCRIPT
-========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
+    'use strict';
 
-    /* =====================================
-       MOBILE MENU
-    ===================================== */
+    const $ = (selector, parent = document) =>
+        parent.querySelector(selector);
 
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mainMenu");
+    const $$ = (selector, parent = document) =>
+        [...parent.querySelectorAll(selector)];
 
-    if (menuBtn && mobileMenu) {
+    const playersGrid = $('#playersGrid');
+    const playersEmpty = $('#playersEmpty');
 
-        const setMenu = (open) => {
-            mobileMenu.classList.toggle("active", open);
-            menuBtn.setAttribute("aria-expanded", String(open));
-            menuBtn.setAttribute("aria-label", open ? "بستن منو" : "باز کردن منو");
-        };
+    const ageButtons = $$('.age-filters [data-age]');
+    const positionButtons = $$('.position-filters [data-position]');
+    const ageCards = $$('.age-group-card[data-age-filter]');
 
-        menuBtn.addEventListener("click", () => {
-            setMenu(!mobileMenu.classList.contains("active"));
-        });
+    let players = [];
+    let selectedAge = 'all';
+    let selectedPosition = 'all';
 
-        mobileMenu.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => setMenu(false));
-        });
+    const escapeHTML = (value) =>
+        String(value ?? '').replace(/[&<>"']/g, (char) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        })[char]);
 
-        document.addEventListener("keydown", event => {
-            if (event.key === "Escape" && mobileMenu.classList.contains("active")) {
-                setMenu(false);
-                menuBtn.focus();
-            }
-        });
-
+    function normalize(value) {
+        return String(value ?? '').trim();
     }
 
-
-    /* =====================================
-       HEADER SCROLL
-    ===================================== */
-
-    const header = document.querySelector(".site-header");
-
-    const updateHeader = () => {
-        if (!header) return;
-        header.classList.toggle("scrolled", window.scrollY > 30);
-    };
-
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
-
-
-    /* =====================================
-       FILTER SYSTEM
-    ===================================== */
-
-    // فقط دکمه‌های فیلتر (نه کارت بازیکن‌ها که آن‌ها هم data-age دارند)
-    const ageButtons = document.querySelectorAll(".filter-btn[data-age]");
-    const positionButtons = document.querySelectorAll(".filter-btn[data-position]");
-    const ageCards = document.querySelectorAll("[data-age-filter]");
-    const playerCards = document.querySelectorAll(".player-card");
-    const playersEmpty = document.getElementById("playersEmpty");
-    const playersSection = document.getElementById("players");
-
-    let activeAge = "all";
-    let activePosition = "all";
-
-
-    /* ---------- Helpers ---------- */
-
-    function scrollToPlayers() {
-        if (!playersSection) return;
-        setTimeout(() => {
-            playersSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
-    }
-
-    function syncAgeUI() {
-        ageButtons.forEach(btn => {
-            btn.classList.toggle("active", btn.dataset.age === activeAge);
-        });
-        ageCards.forEach(card => {
-            card.classList.toggle("active", card.dataset.ageFilter === activeAge);
-        });
-    }
-
-
-    /* ---------- Update Players ---------- */
-
-    function updatePlayers() {
-
-        let visiblePlayers = 0;
-
-        playerCards.forEach(card => {
-
-            const ageMatch =
-                activeAge === "all" ||
-                card.dataset.age === activeAge;
-
-            const positionMatch =
-                activePosition === "all" ||
-                card.dataset.position === activePosition;
-
-            if (ageMatch && positionMatch) {
-                card.style.display = "";
-                visiblePlayers++;
-            } else {
-                card.style.display = "none";
-            }
-
-        });
+    function showEmptyMessage(message) {
+        if (playersGrid) {
+            playersGrid.innerHTML = '';
+        }
 
         if (playersEmpty) {
-            playersEmpty.hidden = visiblePlayers !== 0;
-        }
+            playersEmpty.hidden = false;
 
+            const heading = $('h3', playersEmpty);
+            const paragraph = $('p', playersEmpty);
+
+            if (heading) heading.textContent = message;
+            if (paragraph) paragraph.textContent = '';
+        }
     }
 
+    function getPositionName(position) {
+        const names = {
+            'دروازه‌بان': 'دروازه‌بان',
+            'دروازه بان': 'دروازه‌بان',
+            goalkeeper: 'دروازه‌بان',
+            defender: 'مدافع',
+            midfielder: 'هافبک',
+            forward: 'مهاجم',
+            'مدافع': 'مدافع',
+            'هافبک': 'هافبک',
+            'مهاجم': 'مهاجم'
+        };
 
-    /* ---------- Age Filters (buttons) ---------- */
+        return names[normalize(position)] || normalize(position) || 'نامشخص';
+    }
 
-    ageButtons.forEach(button => {
-        button.addEventListener("click", () => {
+    function renderPlayers() {
+        if (!playersGrid || !playersEmpty) return;
 
-            activeAge = button.dataset.age;
+        const filteredPlayers = players.filter((player) => {
+            const matchesAge =
+                selectedAge === 'all' ||
+                normalize(player.age_group) === selectedAge;
 
-            syncAgeUI();
-            updatePlayers();
+            const matchesPosition =
+                selectedPosition === 'all' ||
+                normalize(player.position) === selectedPosition;
 
-            if (activeAge !== "all") {
-                scrollToPlayers();
-            }
+            return matchesAge && matchesPosition;
+        });
 
+        if (filteredPlayers.length === 0) {
+            playersGrid.innerHTML = '';
+            playersEmpty.hidden = false;
+            return;
+        }
+
+        playersEmpty.hidden = true;
+
+        playersGrid.innerHTML = filteredPlayers.map((player) => {
+            const name = escapeHTML(player.full_name);
+            const imageUrl = escapeHTML(player.image_url);
+            const number = escapeHTML(player.jersey_number ?? '—');
+            const position = escapeHTML(getPositionName(player.position));
+            const ageGroup = escapeHTML(player.age_group || '');
+
+            return `
+                <article class="player-card">
+                    <div class="player-image">
+                        ${imageUrl
+                    ? `<img
+                                    src="${imageUrl}"
+                                    alt="${name}"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'"
+                                >`
+                    : '<div class="player-placeholder">⚽</div>'
+                }
+                    </div>
+
+                    <div class="player-info">
+                        <span class="player-number">${number}</span>
+                        <h3>${name}</h3>
+                        <p>${position}</p>
+                        <span class="player-age">${ageGroup}</span>
+                    </div>
+                </article>
+            `;
+        }).join('');
+    }
+
+    function setActiveButton(buttons, attribute, value) {
+        buttons.forEach((button) => {
+            const isActive = button.dataset[attribute] === value;
+
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
+    }
+
+    function selectAge(age) {
+        selectedAge = age;
+
+        setActiveButton(ageButtons, 'age', age);
+        renderPlayers();
+    }
+
+    function selectPosition(position) {
+        selectedPosition = position;
+
+        setActiveButton(positionButtons, 'position', position);
+        renderPlayers();
+    }
+
+    ageButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            selectAge(button.dataset.age);
         });
     });
 
+    positionButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            selectPosition(button.dataset.position);
+        });
+    });
 
-    /* ---------- Position Filters ---------- */
+    ageCards.forEach((card) => {
+        card.addEventListener('click', () => {
+            selectAge(card.dataset.ageFilter);
 
-    positionButtons.forEach(button => {
-        button.addEventListener("click", () => {
-
-            activePosition = button.dataset.position;
-
-            positionButtons.forEach(btn => {
-                btn.classList.toggle("active", btn === button);
+            $('#players')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-
-            updatePlayers();
-
         });
     });
 
-
-    /* ---------- Age Cards ---------- */
-
-    ageCards.forEach(card => {
-        card.addEventListener("click", () => {
-
-            activeAge = card.dataset.ageFilter;
-
-            syncAgeUI();
-            updatePlayers();
-            scrollToPlayers();
-
-        });
-    });
-
-
-    /* ---------- Deep Link From URL ---------- */
-
-    const ageFromUrl = new URLSearchParams(window.location.search).get("age");
-
-    if (ageFromUrl) {
-
-        const matchingButton = Array.from(ageButtons).find(
-            btn => btn.dataset.age === ageFromUrl
-        );
-
-        if (matchingButton) {
-            matchingButton.click();
+    async function loadPlayers() {
+        if (!playersGrid || !playersEmpty) {
+            console.error(
+                'teams.js: عناصر #playersGrid یا #playersEmpty پیدا نشدند.'
+            );
+            return;
         }
 
+        const client = window.AdminApp?.client;
+
+        if (!client) {
+            console.error(
+                'Supabase client در دسترس نیست.',
+                window.AdminApp?.initError
+            );
+
+            showEmptyMessage('اتصال به سرور برقرار نشد.');
+            return;
+        }
+
+        playersGrid.innerHTML = `
+            <p class="players-loading">در حال دریافت اطلاعات بازیکنان...</p>
+        `;
+
+        playersEmpty.hidden = true;
+
+        try {
+            const { data, error } = await client
+                .from('academy_players')
+                .select(
+                    'id, full_name, image_url, jersey_number, position, age_group'
+                )
+                .eq('is_active', true)
+                .order('jersey_number', { ascending: true });
+
+            if (error) throw error;
+
+            players = data || [];
+            renderPlayers();
+
+        } catch (error) {
+            console.error('خطا در دریافت بازیکنان از Supabase:', error);
+            showEmptyMessage('دریافت اطلاعات بازیکنان ناموفق بود.');
+        }
     }
 
+    // منوی موبایل مطابق HTML همین صفحه
+    const menuButton = $('#menuBtn');
+    const mobileMenu = $('#mainMenu');
 
-    /* ---------- Initial State ---------- */
+    menuButton?.addEventListener('click', () => {
+        const isOpen = mobileMenu?.classList.toggle('active') ?? false;
 
-    updatePlayers();
+        menuButton.classList.toggle('active', isOpen);
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
 
-});
+    mobileMenu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuButton?.classList.remove('active');
+            menuButton?.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // بارگذاری بازیکنان
+    loadPlayers();
+})();
