@@ -1,333 +1,245 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#07110d">
-  <title>صفحه پیدا نشد | رویای افلاک</title>
-  <meta name="description" content="صفحه‌ای که به دنبال آن هستید پیدا نشد. به وب‌سایت رویای افلاک برگردید.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="canonical" href="https://royayeaflak.ir/404.html">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <title>صفحه پیدا نشد | رویای افلاک</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#07110d">
 
-  <style>
-    :root {
-      --ra-bg: #07110d;
-      --ra-surface: #0d1b14;
-      --ra-text: #f5f8f5;
-      --ra-muted: #a8b7ac;
-      --ra-accent: #b6ff54;
-      --ra-border: rgba(182, 255, 84, .16);
-    }
+    <link rel="icon" href="images/favicon/favicon.webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/404.css">
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      min-height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      color: var(--ra-text);
-      background:
-        radial-gradient(ellipse at 50% 42%, rgba(40, 83, 43, .20), transparent 48%),
-        var(--ra-bg);
-      font-family: "Vazirmatn", Tahoma, sans-serif;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .site-header {
-      width: 100%;
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: .7rem;
-      color: var(--ra-text);
-      font-weight: 800;
-      letter-spacing: -.4px;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
-      background: var(--ra-accent);
-      color: var(--ra-bg);
-      font-weight: 900;
-      font-size: 1.15rem;
-    }
-
-    .header-link {
-      color: var(--ra-muted);
-      font-size: .9rem;
-      transition: color .2s ease;
-    }
-
-    .header-link:hover {
-      color: var(--ra-accent);
-    }
-
-    main {
-      flex: 1;
-      display: grid;
-      place-items: center;
-      padding: 4rem 1rem;
-    }
-
-    .error-content {
-      width: 100%;
-      max-width: 680px;
-      margin-inline: auto;
-      text-align: center;
-    }
-
-    .error-code {
-      position: relative;
-      display: inline-block;
-      margin: 0 0 .5rem;
-      color: var(--ra-accent);
-      font-size: clamp(7rem, 24vw, 13.5rem);
-      font-weight: 900;
-      line-height: .95;
-      letter-spacing: -8px;
-      text-shadow: 0 0 70px rgba(182, 255, 84, .09);
-    }
-
-    .error-code::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 22% 13%;
-      border: 1px solid var(--ra-border);
-      border-radius: 50%;
-      transform: rotate(-12deg) scale(1.25, .58);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-bottom: 1rem;
-      padding: .45rem .85rem;
-      border: 1px solid var(--ra-border);
-      border-radius: 999px;
-      color: var(--ra-accent);
-      background: rgba(182, 255, 84, .045);
-      font-size: .83rem;
-      font-weight: 600;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--ra-accent);
-      box-shadow: 0 0 12px rgba(182, 255, 84, .7);
-    }
-
-    h1 {
-      margin: .6rem 0 1rem;
-      font-size: clamp(1.65rem, 4vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -.7px;
-    }
-
-    .description {
-      max-width: 480px;
-      margin: 0 auto;
-      color: var(--ra-muted);
-      font-size: 1rem;
-      line-height: 2;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: .8rem;
-      margin-top: 2rem;
-    }
-
-    .btn-home,
-    .btn-back {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: .55rem;
-      min-height: 48px;
-      padding: .8rem 1.35rem;
-      border-radius: 12px;
-      font-family: inherit;
-      font-weight: 700;
-      transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
-    }
-
-    .btn-home {
-      border: 1px solid var(--ra-accent);
-      background: var(--ra-accent);
-      color: #10200b;
-    }
-
-    .btn-home:hover {
-      background: #c7ff80;
-      border-color: #c7ff80;
-      color: #10200b;
-      transform: translateY(-2px);
-    }
-
-    .btn-back {
-      border: 1px solid rgba(255, 255, 255, .14);
-      background: rgba(255, 255, 255, .025);
-      color: var(--ra-text);
-    }
-
-    .btn-back:hover {
-      border-color: var(--ra-border);
-      background: rgba(182, 255, 84, .06);
-      color: var(--ra-accent);
-      transform: translateY(-2px);
-    }
-
-    .help-note {
-      margin-top: 2.3rem;
-      color: #78877c;
-      font-size: .85rem;
-    }
-
-    .help-note a {
-      color: var(--ra-muted);
-      text-decoration: underline;
-      text-decoration-color: rgba(168, 183, 172, .35);
-      text-underline-offset: 4px;
-    }
-
-    .help-note a:hover {
-      color: var(--ra-accent);
-    }
-
-    .site-footer {
-      padding: 1.2rem 1rem;
-      border-top: 1px solid rgba(255, 255, 255, .06);
-      color: #829087;
-      font-size: .82rem;
-      text-align: center;
-    }
-
-    .site-footer strong {
-      color: var(--ra-text);
-      font-weight: 600;
-    }
-
-    @media (max-width: 575.98px) {
-      main {
-        padding-block: 3rem;
-      }
-
-      .error-code {
-        letter-spacing: -4px;
-      }
-
-      .description {
-        font-size: .94rem;
-      }
-
-      .actions {
-        flex-direction: column;
-      }
-
-      .actions a,
-      .actions button {
-        width: 100%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
-      }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="container d-flex align-items-center justify-content-between py-3" aria-label="ناوبری اصلی">
-      <a class="brand" href="/" aria-label="رویای افلاک - صفحه اصلی">
-        <span class="brand-mark" aria-hidden="true">ر</span>
-        <span>رویای افلاک</span>
-      </a>
-      <a class="header-link" href="/">صفحه اصلی <span aria-hidden="true">←</span></a>
-    </nav>
-  </header>
+<body class="error-page">
 
-  <main>
-    <section class="error-content" aria-labelledby="error-title">
-      <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> خارج از محدوده!</div>
-      <div class="error-code" aria-label="خطای ۴۰۴">404</div>
-      <h1 id="error-title">این صفحه پیدا نشد!</h1>
-      <p class="description">
-        انگار توپ از زمین خارج شده! صفحه‌ای که دنبالش هستید وجود ندارد
-        یا ممکن است آدرس آن تغییر کرده باشد.
-      </p>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
 
-      <div class="actions">
-        <a class="btn-home" href="/">
-          <span aria-hidden="true">⌂</span>
-          بازگشت به صفحه اصلی
-        </a>
-        <button class="btn-back" id="back-button" type="button">
-          <span aria-hidden="true">→</span>
-          بازگشت به صفحه قبل
-        </button>
-      </div>
+                <a href="./index.html" class="brand">
+                    <img src="images/logo.webp" alt="لوگوی مدرسه فوتبال رویای افلاک" class="brand-icon">
+                    <span class="brand-text">رویای افلاک</span>
+                </a>
 
-      <p class="help-note">
-        فکر می‌کنید این صفحه باید وجود داشته باشد؟
-        <a href="/#contact">با ما در میان بگذارید</a>
-      </p>
-    </section>
-  </main>
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="./index.html#home">خانه</a></li>
+                        <li><a href="./about.html">درباره ما</a></li>
+                        <li><a href="./teams.html">رده‌های سنی</a></li>
+                        <li><a href="./coaches.html">مربیان</a></li>
+                        <li><a href="./gallery.html">گالری</a></li>
+                        <li><a href="./news.html">اخبار</a></li>
+                        <li><a href="./contact.html">تماس با ما</a></li>
+                    </ul>
 
-  <footer class="site-footer">
-    <div class="container">
-      <strong>رویای افلاک</strong> — مدرسه فوتبال خرم‌آباد
-    </div>
-  </footer>
+                    <a href="./register.html" class="nav-register">
+                        ثبت‌نام
+                        <span>←</span>
+                    </a>
+                </div>
 
-  <script>
-    document.getElementById("back-button").addEventListener("click", function () {
-      if (window.history.length > 1 && document.referrer) {
-        window.history.back();
-      } else {
-        window.location.href = "/";
-      }
-    });
-  </script>
+                <button class="menu-toggle" id="menuBtn" type="button" aria-label="باز کردن منو" aria-expanded="false"
+                    aria-controls="mainMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </nav>
+
+            <div class="mobile-menu" id="mainMenu">
+                <a href="./index.html#home">خانه</a>
+                <a href="./about.html">درباره ما</a>
+                <a href="./teams.html">رده‌های سنی</a>
+                <a href="./coaches.html">مربیان</a>
+                <a href="./gallery.html">گالری</a>
+                <a href="./news.html">اخبار</a>
+                <a href="./contact.html">تماس با ما</a>
+                <a href="./register.html">ثبت‌نام</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- 404 Main -->
+    <main class="error-main">
+        <div class="error-grid"></div>
+
+        <div class="container">
+            <div class="error-layout">
+
+                <section class="error-content">
+                    <span class="error-label">
+                        <span class="status-dot"></span>
+                        آفساید شدی!
+                    </span>
+
+                    <h1>
+                        اینجا چیزی
+                        <span>پیدا نمی‌شود.</span>
+                    </h1>
+
+                    <p class="error-description">
+                        به نظر می‌رسد از زمین خارج شده‌ایم!
+                        صفحه‌ای که دنبالش هستی پیدا نشد؛ شاید آدرس اشتباه
+                        باشد یا صفحه به جای دیگری منتقل شده باشد.
+                        نگران نباش، بازی هنوز ادامه دارد!
+                    </p>
+
+                    <div class="error-actions">
+                        <a href="./index.html" class="error-btn error-btn-primary">
+                            <span>⌂</span>
+                            برگشت به خانه
+                        </a>
+
+                        <button type="button" class="error-btn error-btn-secondary" id="backBtn">
+                            برگشت به صفحه قبل
+                            <span>←</span>
+                        </button>
+                    </div>
+
+                    <div class="error-footnote">
+                        <span>404</span>
+                        <span class="footnote-line"></span>
+                        <span>گاهی مسیر اشتباه، شروع یک مسیر تازه است.</span>
+                    </div>
+                </section>
+
+
+                <!-- Football Illustration -->
+                <section class="error-visual" aria-label="تصویر گرافیکی صفحه 404">
+                    <div class="visual-glow"></div>
+                    <div class="visual-orbit orbit-one"></div>
+                    <div class="visual-orbit orbit-two"></div>
+
+                    <div class="visual-number">404</div>
+
+                    <div class="football">
+                        <div class="football-pentagon"></div>
+                    </div>
+
+                    <div class="visual-tag tag-top">
+                        <span></span>
+                        PAGE NOT FOUND
+                    </div>
+
+                    <div class="visual-tag tag-bottom">
+                        ROYAYE AFLAK
+                        <span>⚽</span>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer" id="contact">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="./index.html" class="brand">
+                        <img src="images/logo.webp" alt="لوگوی رویای افلاک" class="brand-icon">
+                        <span class="brand-text">رویای افلاک</span>
+                    </a>
+
+                    <p>
+                        ساختن بازیکنانی بهتر، برای ساختن آینده‌ای بهتر.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>دسترسی سریع</h3>
+                    <a href="./index.html">خانه</a>
+                    <a href="./about.html">درباره ما</a>
+                    <a href="./teams.html">رده‌های سنی</a>
+                    <a href="./coaches.html">مربیان</a>
+                    <a href="./gallery.html">گالری</a>
+                    <a href="./news.html">اخبار</a>
+                    <a href="./contact.html">تماس با ما</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>ارتباط با ما</h3>
+                    <a href="tel:+989120329713">۰۹۱۲۰۳۲۹۷۱۳</a>
+
+                    <p>
+                        لرستان - خرم آباد - گلدشت غربی -
+                        اکباتان ۵ جنب پارک جانبازان
+                    </p>
+
+                    <a href="https://www.instagram.com/royaye_aflak_2012/" target="_blank" rel="noopener noreferrer">
+                        اینستاگرام رویای افلاک
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 رویای افلاک — تمامی حقوق محفوظ است.</p>
+
+                <p>
+                    Designed &amp; Developed With ❤️ by
+                    <a href="https://khoshnamay.ir/profiles/parham/" target="_blank" rel="noopener noreferrer">
+                        ParhamDerikvand
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+
+    <script>
+        // Mobile menu
+        const menuBtn = document.getElementById("menuBtn");
+        const mainMenu = document.getElementById("mainMenu");
+
+        if (menuBtn && mainMenu) {
+            menuBtn.addEventListener("click", () => {
+                const isOpen = mainMenu.classList.toggle("active");
+
+                menuBtn.classList.toggle("active", isOpen);
+                menuBtn.setAttribute("aria-expanded", String(isOpen));
+            });
+        }
+
+        // Header scroll effect
+        const header = document.querySelector(".site-header");
+
+        window.addEventListener("scroll", () => {
+            if (header) {
+                header.classList.toggle("scrolled", window.scrollY > 30);
+            }
+        });
+
+        // Back button
+        document.getElementById("backBtn").addEventListener("click", () => {
+            if (window.history.length > 1 && document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = "./index.html";
+            }
+        });
+    </script>
+
 </body>
 
 </html>
