@@ -264,7 +264,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // =========================================
             // SAVE TO SUPABASE
             // =========================================
+            const { data: { session }, error: sessionError } =
+                await supabaseClient.auth.getSession();
 
+            console.log("Session check:", {
+                hasSession: !!session,
+                userId: session?.user?.id ?? null,
+                sessionError
+            });
             const { error } = await supabaseClient
                 .from("registrations")
                 .insert([registration]);
