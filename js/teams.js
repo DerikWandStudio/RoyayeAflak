@@ -74,7 +74,7 @@
 
             const matchesPosition =
                 selectedPosition === 'all' ||
-                normalize(player.position) === selectedPosition;
+                getPositionName(player.position) === getPositionName(selectedPosition);
 
             return matchesAge && matchesPosition;
         });

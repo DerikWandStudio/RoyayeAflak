@@ -312,15 +312,13 @@
 /* ---------- Player Card ---------- */
 
 .player-card {
+    position: relative;
     overflow: hidden;
 
-    border:
-        1px solid var(--border);
-
+    border: 1px solid var(--border);
     border-radius: 20px;
 
-    background:
-        rgba(255, 255, 255, 0.025);
+    background: rgba(255, 255, 255, 0.025);
 
     transition: var(--transition);
 }
